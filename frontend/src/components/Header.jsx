@@ -46,7 +46,7 @@ function Header() {
                         <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700">Recipes</a>
                         </li>
                         <li>
-                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700">Kitchen Tips</a>
+                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700">Blog</a>
                         </li>
                         <li>
                         <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700">Favorites</a>
