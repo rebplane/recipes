@@ -7,7 +7,7 @@ function Header() {
             <nav class="bg-white">
                 <div class="max-w-screen-md flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="images/rebbychaytext.png" class="h-9" alt="RebbyChayLogo" />
+                    <img src="images/rebbychay.png" class="h-9" alt="RebbyChayLogo" />
                 </a>
                 <div class="flex md:order-2">
                     <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" class="md:hidden text-gray-500 text-gray-400 hover:bg-gray-100 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
@@ -44,6 +44,12 @@ function Header() {
                     <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
                         <li>
                         <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700">Recipes</a>
+                        </li>
+                        <li>
+                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700">Kitchen Tips</a>
+                        </li>
+                        <li>
+                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700">Favorites</a>
                         </li>
                         <li>
                         <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700">About</a>
