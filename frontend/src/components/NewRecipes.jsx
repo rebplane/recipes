@@ -5,13 +5,13 @@ function NewRecipes() {
     return (
         <div flex>
             <div class="flex justify-center mt-5">
-                <div class="max-w-screen-md w-screen">
+                <div class="max-w-screen-xl w-screen">
                     <h1 class="font-bold">New Recipes</h1>
                 </div>
             </div>
         
             <div class="flex justify-center">
-                <div class="w-screen grid grid-cols-5 max-w-screen-md justify-self-center mt-5 gap-x-3">
+                <div class="w-screen grid grid-cols-5 max-w-screen-xl justify-self-center mt-5 gap-x-3">
                 <div class="col-span-2 grid-rows-2">
 
                     <figure class="relative w-fit transition-all duration-300 cursor-pointer filter h-50 row-span-1 mb-3 gap-x-3">

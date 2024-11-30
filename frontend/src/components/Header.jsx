@@ -5,7 +5,7 @@ function Header() {
     return (
         <div class="border-0 border-b-4 border-solid border-indigo-900">
             <nav class="bg-white">
-                <div class="max-w-screen-md flex flex-wrap items-center justify-between mx-auto p-4">
+                <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="images/rebbychay.png" class="h-9" alt="RebbyChayLogo" />
                 </a>
