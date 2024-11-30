@@ -5,8 +5,8 @@ function NewRecipes() {
     return (
         <div flex>
             <div class="flex justify-center mt-5">
-                <div class="max-w-screen-xl w-screen">
-                    <h1 class="font-bold">New Recipes</h1>
+                <div class="max-w-screen-xl w-screen relative flex items-center mt-20">
+                    <div class="mr-5 flex-grow border-t border-8 border-indigo-950"></div> <h1 class="font-bold text-2xl font-poppins">NEWEST RECIPES</h1> <div class="ml-5 flex-grow border-t border-8 border-indigo-950"></div>
                 </div>
             </div>
         

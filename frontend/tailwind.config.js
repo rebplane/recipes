@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         'custom-indigo': '#1e1b4b',
       },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
     },
   },
   plugins: [],

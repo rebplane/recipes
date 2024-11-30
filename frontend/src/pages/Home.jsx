@@ -11,9 +11,7 @@ function Home() {
     <div>
         <Header/>
         <Featured/>
-        <hr class="mt-10"></hr>
         <NewRecipes/>
-        <hr class="mt-10"></hr>
         <Collection/>
         <Footer/>
     </div>

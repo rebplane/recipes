@@ -9,7 +9,7 @@ function RecipePage() {
         <Header/>
 
         <div class="flex justify-center">
-            <div class="flex-col mt-5 max-w-screen-md space-y-5">
+            <div class="flex-col mt-5 max-w-screen-xl space-y-5 ml-5 mr-5 md:ml-0 md:mr-0">
 
                     <h1 class="font-bold text-2xl">Lasagna</h1>
 
@@ -21,7 +21,7 @@ function RecipePage() {
                         <img class="col-span-1" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
 
                         <div class="flex">
-                            <div class="max-w-md border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 w-fit">
+                            <div class="max-w-xl border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 w-fit">
                                 <div class="px-6 py-4">
                                     <p class="text-base">
                                     <b>Prep Time: </b> 10 minutes
