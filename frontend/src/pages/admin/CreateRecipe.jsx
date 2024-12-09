@@ -6,6 +6,7 @@ import Footer from '../../components/Footer'
 function CreateRecipe() {
 
     const [ingredientValues, setIngredientValues] = useState([{amt: "", ing: ""}]);
+    const [stepValues, setStepValues] = useState([{step: "", img: ""}]);
 
     // Ingredient Handlers
     let handleIngredientChange = (i, e) => {
@@ -24,32 +25,28 @@ function CreateRecipe() {
         setIngredientValues(newIngredientValues);
     }
 
+    // Instructions/steps handler
+    let handleStepChange = (i, e) => {
+        let newStepValues = [...stepValues];
+        newStepValues[i][e.target.name] = e.target.value;
+        setStepValues(newStepValues);
+    }
+
+    let addStepFields = () => {
+        setStepValues([...stepValues, {step: "", img: ""}]);
+    }
+
+    let removeStepFields = (i) => {
+        let newStepValues = [...stepValues];
+        newStepValues.splice(i, 1);
+        setStepValues(newStepValues);
+    }
+
     let handleSubmit = (event) => {
         event.preventDefault();
         alert(JSON.stringify(ingredientValues));
         // TODO send a POST request to backend
     }
-
-    // Ingredient component
-    const Ingredient = props => {
-        return (
-        <div className="relative z-0 mb-5 group">
-
-                <div className="flex gap-x-3">
-                <input type="text" className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required placeholder="Amount (e.g. 1 lb)" />
-                <input type="text" className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required placeholder="Ingredient (e.g. tomato)" />
-                
-                <button type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" className="size-6 mt-1 text-red-700" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                </svg>
-                </button>
-
-                </div>
-        </div>);
-        
-    };
-
 
     return (
         <div>
@@ -62,38 +59,38 @@ function CreateRecipe() {
 
                 <div className="relative z-0 w-full mb-5 group">
                         <input type="text" name="recipe_title" id="recipe_title" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="recipe_title" className="peer-focus:font-medium absolute text-sm text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Recipe Title</label>
+                        <label for="recipe_title" className="peer-focus:font-bold absolute text-sm text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Recipe Title</label>
                 </div>
 
                 <div className="relative z-0 w-full mb-5 group">
-                        <label for="recipe_short_desc" className="block mb-2 text-sm font-medium text-black">Short introduction description to recipe</label>
+                        <label for="recipe_short_desc" className="block mb-2 text-sm font-bold text-black">Short introduction description to recipe</label>
                         <input type="text" name="recipe_short_desc" id="recipe_short_desc" className="block w-full p-4 text-gray-900 border border-black rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" placeholder=" " required />
                 </div>
 
                 
                 <div className="relative z-0 w-full mb-5 group">
-                    <label className="block mb-2 text-sm font-medium text-gray-900" for="file_input">Upload recipe main image</label>
+                    <label className="block mb-2 text-sm font-bold text-gray-900" for="file_input">Upload recipe main image</label>
                     <input className="block text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="file_input" type="file" required/>
                 </div>
 
                 <div className="relative z-0 w-full mb-5 group">
-                    <label for="prep_time" className="block mb-2 text-sm font-medium text-black">Preparation time (number of minutes)</label>
+                    <label for="prep_time" className="block mb-2 text-sm font-bold text-black">Preparation time (number of minutes)</label>
                     <input type="number-input" id="prep_time" className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required/>
                 </div>
 
                 <div className="relative z-0 w-full mb-5 group">
-                    <label for="cook_time" className="block mb-2 text-sm font-medium text-black">Cooking time (number of minutes)</label>
+                    <label for="cook_time" className="block mb-2 text-sm font-bold text-black">Cooking time (number of minutes)</label>
                     <input type="number-input" id="cook_time" className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required/>
                 </div>
 
                 <div className="relative z-0 mb-5 group">
-                    <label for="servings" className="block mb-2 text-sm font-medium text-black">Servings</label>
+                    <label for="servings" className="block mb-2 text-sm font-bold text-black">Servings</label>
                     <input type="number-input" id="servings" className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required/>
                 </div>
 
                 {/* TODO Primary tags pulled from database */}
                 <div className="relative z-0 w-full mb-5 group">
-                <label for="countries_multiple" className="block mb-2 text-sm font-medium text-gray-900">Tags</label>
+                <label for="countries_multiple" className="block mb-2 text-sm font-bold text-gray-900">Tags</label>
                 <select multiple id="countries_multiple" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="vegan">Vegan</option>
                     <option value="lactose-free">Lactose Free</option>
@@ -102,12 +99,11 @@ function CreateRecipe() {
                 </div>
 
                 <div className="relative z-0 w-full mb-5 group">
-                        <label for="recipe_long_desc" className="block mb-2 text-sm font-medium text-black">More information about recipe</label>
+                        <label for="recipe_long_desc" className="block mb-2 text-sm font-bold text-black">More information about recipe</label>
                         <input type="text" name="recipe_long_desc" id="recipe_long_desc" className="block w-full p-4 text-gray-900 border border-black rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" placeholder=" " required />
                 </div>
 
-                {/* Ingredients and steps todo */}
-                <label for="ingredients" className="block mb-2 text-sm font-medium text-black">Ingredients</label>
+                <p className="block mb-2 text-sm text-black font-bold">Ingredients</p>
 
                 {ingredientValues.map((element, index) => (
                     <div className="relative z-0 mb-5 group" key={index}>
@@ -117,7 +113,7 @@ function CreateRecipe() {
                             <input type="text" name="ing" value={element.name} onChange={e => handleIngredientChange(index, e)} className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required placeholder="Ingredient (e.g. tomato)" />
                             
                             {
-                                index ?
+                                index == ingredientValues.length - 1 ?
                                 <button type="button" onClick={() => removeIngredientFields(index)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" className="size-6 mt-1 text-red-700" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
@@ -130,26 +126,52 @@ function CreateRecipe() {
                     </div>
                 ))}
                 
-                <button type="button" onClick={() => addIngredientFields()} className="text-white bg-green-600 hover:bg-green-950 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3">
+                <button type="button" onClick={() => addIngredientFields()} className="text-white bg-green-600 hover:bg-green-950 focus:ring-4 focus:outline-none focus:ring-green-300 font-bold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3">
                 <div className="flex">
-                Add ingredient
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="size-6 rounded-full ml-3 text-green-800 border border-green-800 bg-green800" strokeWidth="1.5" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
-                </div>
-
+                    Add ingredient
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="size-6 rounded-full ml-3 text-green-800 border border-green-800 bg-green800" strokeWidth="1.5" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    </div>
                 </button>
                 
+                <p className="block mb-2 text-sm text-black font-bold">Instructions</p>
 
-                <label for="ingredients" className="block mb-2 text-sm font-medium text-black">Instructions</label>
+                {stepValues.map((element, index) => (
+                    <div className="relative z-0 w-full mb-5 group" key={index}>
+                    <div className="flex">
+                        <label for="step" className="block mb-2 text-sm font-medium text-black">Step {index + 1}</label>
 
-                <div>
+                        {
+                            index == stepValues.length - 1 ?
+                            <button type="button" onClick={() => removeStepFields(index)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" className="size-6 mb-2 ml-3 text-red-700" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                            </svg>
+                            </button>
+                            : null
+                        }
+                    </div>
+            
+                    <input type="text" name="step" value={element.name} onChange={e => handleStepChange(index, e)} className="block w-full p-4 text-gray-900 border border-black rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" placeholder=" " required />
+                    <input type="file" name="img" value={element.name} onChange={e => handleStepChange(index, e)} className="block mt-3 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"/>
+                    
+                    </div>
+                ))}
 
-        </div>
+                <button type="button" onClick={() => addStepFields()} className="text-white bg-green-600 hover:bg-green-950 focus:ring-4 focus:outline-none focus:ring-green-300 font-bold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3">
+                <div className="flex">
+                    Add step
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="size-6 rounded-full ml-3 text-green-800 border border-green-800 bg-green800" strokeWidth="1.5" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    </div>
+                </button>
 
-        
+                
+                <p class="mb-5">Recipe page will be added with URL /recipe/{"<recipe_name>"}</p>
     
-                <button type="submit" className="text-white bg-indigo-800 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                <button type="submit" className="text-white bg-indigo-800 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
 
                 </form>
             </div>
