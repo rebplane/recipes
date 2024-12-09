@@ -6,7 +6,7 @@ function Featured() {
         <div class="mt-10">
             <div class="flex flex-row justify-center">
                 <div class="max-w-screen-xl bg-indigo-950">
-                    <a href="#" class="flex md:flex-row text-center items-center w-screen max-w-full">
+                    <div class="flex md:flex-row text-center items-center w-screen max-w-full">
                         <img class="h-full w-full" src="https://www.allrecipes.com/thmb/5JVfA7MxfTUPfRerQMdF-nGKsLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/25473-the-perfect-basic-burger-DDMFS-4x3-56eaba3833fd4a26a82755bcd0be0c54.jpg" alt=""/>
                         
                         <div class="w-full p-5">
@@ -24,7 +24,7 @@ function Featured() {
                             
                             </a>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
 
