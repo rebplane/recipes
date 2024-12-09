@@ -1,12 +1,19 @@
 
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+
+import { getTags } from '../../api/tag';
 
 function CreateRecipe() {
 
     const [ingredientValues, setIngredientValues] = useState([{amt: "", ing: ""}]);
     const [stepValues, setStepValues] = useState([{step: "", img: ""}]);
+    const [tags, setTags] = useState([]);
+
+    useEffect(() => {
+        getTags(setTags);
+    }, []);
 
     // Ingredient Handlers
     let handleIngredientChange = (i, e) => {
@@ -88,14 +95,15 @@ function CreateRecipe() {
                     <input type="number-input" id="servings" className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required/>
                 </div>
 
-                {/* TODO Primary tags pulled from database */}
-                <div className="relative z-0 w-full mb-5 group">
-                <label for="countries_multiple" className="block mb-2 text-sm font-bold text-gray-900">Tags</label>
-                <select multiple id="countries_multiple" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option value="vegan">Vegan</option>
-                    <option value="lactose-free">Lactose Free</option>
-                    <option value="healthy">Healthy</option>
-                </select>
+                <label for="tags" className="block mb-2 text-sm font-bold text-gray-900">Tags</label>
+                <div class="columns-4 mb-4">
+                    {tags.map((element, index) => (
+                        <div>
+                            <input id={element.title} type="checkbox" value={element.title} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"/>
+                            <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900">{String(element.title).charAt(0).toUpperCase() + String(element.title.slice(1))}</label>
+                        </div>
+                    ))}
+
                 </div>
 
                 <div className="relative z-0 w-full mb-5 group">
