@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-// TODO complete schema
-
 const recipeSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -22,7 +20,31 @@ const recipeSchema = new mongoose.Schema({
     cook_time: {
         type: Number,
         required: true
+    },
+    servings: {
+        type: Number,
+        required: true
+    },
+    tags: {
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Tag'
+        }],
+        required: false
+    },
+    more_info: {
+        type: String,
+        required: true
+    },
+    ingredients: {
+        type: [String, String],
+        required: true
+    },
+    instructions: {
+        type: [String, String],
+        required: true
     }
+
 
 },  {
     timestamps: true // createdAt, updatedAt
