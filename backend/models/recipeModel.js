@@ -9,7 +9,7 @@ const recipeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    main_img: {
+    img: {
         type: String,
         required: true
     },
@@ -34,11 +34,11 @@ const recipeSchema = new mongoose.Schema({
         required: true
     },
     ingredients: {
-        type: [String, String],
+        type: [{amt: String, ing: String}],
         required: true
     },
-    instructions: {
-        type: [String, String],
+    steps: {
+        type: [{step: String, img: String}],
         required: true
     }
 
