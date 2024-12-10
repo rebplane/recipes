@@ -13,8 +13,8 @@ function Collection() {
             <div class="flex justify-center">
                 <div class="w-screen grid grid-cols-4 max-w-screen-xl justify-self-center mt-5 gap-x-3 gap-y-10">
                     <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-1">
-                    <a href="#">
-                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                    <a href="/">
+                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Lasagna"/>
                         <figcaption class="absolute text-lg text-black bg-white">
                             <p class="text-indigo-800 hover:underline text-lg">Lasagna</p>
                         </figcaption>
@@ -22,8 +22,8 @@ function Collection() {
                     </figure>
 
                     <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-1">
-                    <a href="#">
-                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                    <a href="/">
+                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Lasagna"/>
                         <figcaption class="absolute text-lg text-black bg-white">
                             <p class="text-indigo-800 hover:underline text-lg">Lasagna</p>
                         </figcaption>
@@ -31,8 +31,8 @@ function Collection() {
                     </figure>
                     
                     <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-1">
-                    <a href="#">
-                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                    <a href="/">
+                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Lasagna"/>
                         <figcaption class="absolute text-lg text-black bg-white">
                             <p class="text-indigo-800 hover:underline text-lg">Lasagna</p>
                         </figcaption>
@@ -40,8 +40,8 @@ function Collection() {
                     </figure>
 
                     <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-1">
-                    <a href="#">
-                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                    <a href="/">
+                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Lasagna"/>
                         <figcaption class="absolute text-lg text-black bg-white">
                             <p class="text-indigo-800 hover:underline text-lg">Lasagna</p>
                         </figcaption>
@@ -49,8 +49,8 @@ function Collection() {
                     </figure>
 
                     <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-1">
-                    <a href="#">
-                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                    <a href="/">
+                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Lasagna"/>
                         <figcaption class="absolute text-lg text-black bg-white">
                             <p class="text-indigo-800 hover:underline text-lg">Lasagna</p>
                         </figcaption>
@@ -58,8 +58,8 @@ function Collection() {
                     </figure>
 
                     <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-1">
-                    <a href="#">
-                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                    <a href="/">
+                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Lasagna"/>
                         <figcaption class="absolute text-lg text-black bg-white">
                             <p class="text-indigo-800 hover:underline text-lg">Lasagna</p>
                         </figcaption>
@@ -67,8 +67,8 @@ function Collection() {
                     </figure>
                     
                     <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-1">
-                    <a href="#">
-                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                    <a href="/">
+                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Lasagna"/>
                         <figcaption class="absolute text-lg text-black bg-white">
                             <p class="text-indigo-800 hover:underline text-lg">Lasagna</p>
                         </figcaption>
@@ -76,8 +76,8 @@ function Collection() {
                     </figure>
 
                     <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-1">
-                    <a href="#">
-                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                    <a href="/">
+                        <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Lasagna"/>
                         <figcaption class="absolute text-lg text-black bg-white">
                             <p class="text-indigo-800 hover:underline text-lg">Lasagna</p>
                         </figcaption>

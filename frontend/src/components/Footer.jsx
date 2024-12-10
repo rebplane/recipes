@@ -11,7 +11,7 @@ function Footer() {
                 </span>
                 <div class="flex mt-4 sm:justify-center sm:mt-0">
 
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                    <a href="/" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
                         <span class="[&>svg]:h-5 [&>svg]:w-5">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ function Footer() {
                     </span>
                     </a>
 
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                    <a href="/" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
                         <span class="[&>svg]:h-5 [&>svg]:w-5">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

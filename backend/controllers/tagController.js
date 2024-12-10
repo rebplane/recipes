@@ -6,8 +6,8 @@ const Tag = require('../models/tagModel')
 // @access Public
 const getTags = asyncHandler(async(req, res) => {
     try {
-        const recipes = await Tag.find().sort({title: 1}); // Sorts alphabetically by title
-        res.status(200).json(recipes); 
+        const tags = await Tag.find().sort({title: 1}); // Sorts alphabetically by title
+        res.status(200).json(tags); 
     } catch(error) {
         console.log("Error in fetching tags: ", error.message);
         res.status(500).json({ success: false, message: "Server Error"});
@@ -19,6 +19,8 @@ const getTags = asyncHandler(async(req, res) => {
 // @route POST /api/tags
 const createTag = asyncHandler(async(req, res) => {
     const tag = req.body;
+
+    console.log(req.body)
 
     if (!tag.title || !tag.category) {
         return res.status(400).json( {success: false, message: "Please provide all fields."})

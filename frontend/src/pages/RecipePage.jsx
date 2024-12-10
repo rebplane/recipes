@@ -18,7 +18,7 @@ function RecipePage() {
                     </p>
 
                     <div class="grid grid-cols-2 gap-5">
-                        <img class="col-span-1" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                        <img class="col-span-1" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Burger"/>
 
                         <div class="flex">
                             <div class="max-w-xl border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 w-fit">
@@ -115,7 +115,7 @@ function RecipePage() {
                         <b>3) </b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec dui rhoncus, facilisis justo ut, bibendum diam. Duis eu bibendum eros, vel dapibus lorem. Aenean quis mattis tortor. Donec dictum orci a tortor sagittis, eu ultricies risus dapibus. Nam placerat rutrum leo, ac eleifend arcu sollicitudin sed. Maecenas ut dolor a risus luctus ornare nec a odio. 
                         </p>
 
-                        <img class="col-span-2" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                        <img class="col-span-2" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Burger step"/>
 
                         <p class="text-md w-fit col-span-2">
                         <b>4) </b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec dui rhoncus, facilisis justo ut, bibendum diam. Duis eu bibendum eros, vel dapibus lorem. Aenean quis mattis tortor. Donec dictum orci a tortor sagittis, eu ultricies risus dapibus. Nam placerat rutrum leo, ac eleifend arcu sollicitudin sed. Maecenas ut dolor a risus luctus ornare nec a odio. 
@@ -125,7 +125,7 @@ function RecipePage() {
                         <b>5) </b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec dui rhoncus, facilisis justo ut, bibendum diam. Duis eu bibendum eros, vel dapibus lorem. Aenean quis mattis tortor. Donec dictum orci a tortor sagittis, eu ultricies risus dapibus. Nam placerat rutrum leo, ac eleifend arcu sollicitudin sed. Maecenas ut dolor a risus luctus ornare nec a odio. 
                         </p>
 
-                        <img class="col-span-2" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="image description"/>
+                        <img class="col-span-2" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Burger step"/>
 
                         <p class="text-md w-fit col-span-2">
                         <b>6) </b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec dui rhoncus, facilisis justo ut, bibendum diam. Duis eu bibendum eros, vel dapibus lorem. Aenean quis mattis tortor. Donec dictum orci a tortor sagittis, eu ultricies risus dapibus. Nam placerat rutrum leo, ac eleifend arcu sollicitudin sed. Maecenas ut dolor a risus luctus ornare nec a odio. 

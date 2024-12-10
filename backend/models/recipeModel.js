@@ -26,10 +26,7 @@ const recipeSchema = new mongoose.Schema({
         required: true
     },
     tags: {
-        type: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Tag'
-        }],
+        type: [String],
         required: false
     },
     more_info: {
