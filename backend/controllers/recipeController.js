@@ -14,12 +14,25 @@ const getAllRecipes = asyncHandler(async(req, res) => {
     }
 });
 
+// @desc Get recipe by title
+// @route Get /api/recipe/{title}
+// @access Public
+const getRecipeByTitle = asyncHandler(async(req, res) => {
+    try {
+        var recipe = await Recipe.findOne({ title: req.params.title.toLowerCase()});
+        res.status(200).json(recipe);
+    } catch(error) {
+        console.log("Error in fetching recipe: ", error.message);
+        res.status(500).json({ success: false, message: "Server Error"});
+    }
+})
+
 
 // @desc Add a recipe to the database
 // @Route POST /api/recipes/
 const postRecipe = asyncHandler(async(req, res) => {
 
-    const recipe = req.body
+    const recipe = req.body;
 
     console.log(req.body)
 
@@ -38,9 +51,11 @@ const postRecipe = asyncHandler(async(req, res) => {
     recipe.tags = tags
 
     // Convert prep_time, cook_time, servings to int
-    recipe.prep_time = Number(recipe.prep_time)
-    recipe.cook_time = Number(recipe.cook_time)
-    recipe.servings = Number(recipe.servings)
+    recipe.prep_time = Number(recipe.prep_time);
+    recipe.cook_time = Number(recipe.cook_time);
+    recipe.servings = Number(recipe.servings);
+
+    recipe.title = recipe.title.toLowerCase();
 
     const newRecipe = new Recipe(recipe);
 
@@ -53,7 +68,9 @@ const postRecipe = asyncHandler(async(req, res) => {
     }
 });
 
+
 module.exports = {
     getAllRecipes,
+    getRecipeByTitle,
     postRecipe
 }
