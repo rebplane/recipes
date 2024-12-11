@@ -1,5 +1,10 @@
 const asyncHandler = require('express-async-handler');
 const Recipe = require('../models/recipeModel');
+const { promisify } = require('util')
+const fs = require('fs')
+
+const BASE_URL = 'http://localhost:5000/'
+const unlinkAsync = promisify(fs.unlink)
 
 // @desc Get all recipes in the database
 // @route GET /api/recipes
@@ -20,12 +25,11 @@ const getAllRecipes = asyncHandler(async(req, res) => {
 const getRecipeByTitle = asyncHandler(async(req, res) => {
     try {
         var recipe = await Recipe.findOne({ title: req.params.title.toLowerCase()});
-        recipe.img = "http://localhost:5000/" + recipe.img.replace("\\", "/");
+        recipe.img = BASE_URL + recipe.img.replace("\\", "/");
 
-        console.log(recipe.steps[0].img)
         for (i=0; i<recipe.steps.length; i++) {
             if (recipe.steps[i].img != "") {
-                recipe.steps[i].img = "http://localhost:5000/" + recipe.steps[i].img.replace("\\", "/");
+                recipe.steps[i].img = BASE_URL + recipe.steps[i].img.replace("\\", "/");
             }
         }
         res.status(200).json(recipe);
@@ -35,18 +39,17 @@ const getRecipeByTitle = asyncHandler(async(req, res) => {
     }
 })
 
-
 // @desc Add a recipe to the database
 // @Route POST /api/recipes/
 const postRecipe = asyncHandler(async(req, res) => {
 
     const recipe = req.body;
 
-    console.log(req.body.title)
-    // console.log(req.img)
-    console.log(req.files)
-
     if (!req.body.title || !req.body.short_desc || !req.body.prep_time || !req.body.cook_time || !req.body.servings || !req.body.tags || !req.body.more_info || !req.body.ingredients || !req.body.steps) {
+        // Remove the saved files as the POST request failed
+        for (i=0; i < req.files.length; i++) {
+            await unlinkAsync(req.files[i].path)
+        }
         return res.status(400).json({success:false, message: "Please fill out all required fields."})
     }
 
@@ -54,11 +57,12 @@ const postRecipe = asyncHandler(async(req, res) => {
     var tags = []
 
     for (var key in recipe.tags) {
-        if (recipe.tags[key] === true) {
+        if (recipe.tags[key] === 'true') {
             tags.push(key);
         }
     }
     recipe.tags = tags
+
 
     // Convert prep_time, cook_time, servings to int
     recipe.prep_time = Number(recipe.prep_time);
@@ -82,10 +86,12 @@ const postRecipe = asyncHandler(async(req, res) => {
     }
 
     if (img_found === false) {
+         // Remove the saved files as the POST request failed
+         for (i=0; i < req.files.length; i++) {
+            await unlinkAsync(req.files[i].path)
+        }
         return res.status(400).json({success:false, message: "Please fill out all required fields."})
     }
-
-    console.log(recipe)
 
     const newRecipe = new Recipe(recipe);
 
