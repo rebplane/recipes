@@ -87,7 +87,12 @@ function RecipePage() {
                             {recipe.steps.map((element, index) =>(
                                 <p class="text-md w-fit col-span-2">
                                 <b>{index + 1}) </b> {element.step} 
-                                    <img class="max-w-xl mt-3" src={element.img} alt="Burger"/>
+                                {
+                                    element.img ?
+                                    <img class="max-w-xl mt-3" src={element.img || ""} alt="Burger"/>
+                                    : null
+                                }
+                                    
                                 </p>
 
                                 // TODO: Get instruction image
