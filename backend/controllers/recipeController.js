@@ -1,13 +1,26 @@
 const asyncHandler = require('express-async-handler');
 const Recipe = require('../models/recipeModel');
 const { promisify } = require('util')
-const fs = require('fs')
+const fs = require('fs');
+const { model } = require('mongoose');
 
 const BASE_URL = 'http://localhost:5000/'
 const unlinkAsync = promisify(fs.unlink)
 
+// Provides the static URL to the frontend in order to display the static images
+function setRecipeImgs(recipe) {
+    recipe.img = BASE_URL + recipe.img.replace("\\", "/");
+
+    for (i=0; i<recipe.steps.length; i++) {
+        if (recipe.steps[i].img != "") {
+            recipe.steps[i].img = BASE_URL + recipe.steps[i].img.replace("\\", "/");
+        }
+    }
+    return recipe;
+}
+
 // @desc Get all recipes in the database
-// @route GET /api/recipes
+// @route GET /api/recipes/
 // @access Public
 const getAllRecipes = asyncHandler(async(req, res) => {
     try {
@@ -19,19 +32,30 @@ const getAllRecipes = asyncHandler(async(req, res) => {
     }
 });
 
+
+// @desc Get the newest recipe added to the database
+// @route GET /api/recipes/latest
+// @access Public
+const getLatestRecipe = asyncHandler(async(req, res) => {
+    try {
+        var recipe = await Recipe.findOne().sort({ createdAt: -1 }).limit(1);
+        recipe = setRecipeImgs(recipe);
+        res.status(200).json(recipe);
+    }
+    catch(error) {
+        console.log("Error in fetching recipe: ", error.message);
+        res.status(500).json({ success: false, message: "Server Error"});
+    }
+})
+
+
 // @desc Get recipe by title
-// @route Get /api/recipe/{title}
+// @route GET /api/recipe/{title}
 // @access Public
 const getRecipeByTitle = asyncHandler(async(req, res) => {
     try {
         var recipe = await Recipe.findOne({ title: req.params.title.toLowerCase()});
-        recipe.img = BASE_URL + recipe.img.replace("\\", "/");
-
-        for (i=0; i<recipe.steps.length; i++) {
-            if (recipe.steps[i].img != "") {
-                recipe.steps[i].img = BASE_URL + recipe.steps[i].img.replace("\\", "/");
-            }
-        }
+        recipe = setRecipeImgs(recipe);
         res.status(200).json(recipe);
     } catch(error) {
         console.log("Error in fetching recipe: ", error.message);
@@ -40,7 +64,8 @@ const getRecipeByTitle = asyncHandler(async(req, res) => {
 })
 
 // @desc Add a recipe to the database
-// @Route POST /api/recipes/
+// @route POST /api/recipes/
+// @access Admin
 const postRecipe = asyncHandler(async(req, res) => {
 
     const recipe = req.body;
@@ -105,8 +130,37 @@ const postRecipe = asyncHandler(async(req, res) => {
 });
 
 
+// @desc Delete recipe by title
+// @route DELETE /api/recipe/{title}
+// @access Admin
+const deleteRecipe = asyncHandler(async(req, res) => {
+    try {
+        var recipe = await Recipe.findOne({ title: req.params.title.toLowerCase()});
+
+        // Delete all recipe images from database
+        
+        await unlinkAsync(recipe.img)
+
+        for (i=0; i<recipe.steps.length; i++) {
+            if (recipe.steps[i].img != "") {
+                await unlinkAsync(recipe.steps[i].img)
+            }
+        }
+
+        await Recipe.findByIdAndDelete(recipe._id)
+
+        res.status(200).json({ success: true, message: "Deleted recipe"});
+    } catch(error) {
+        console.log("Error in fetching recipe: ", error.message);
+        res.status(500).json({ success: false, message: "Server Error"});
+    }
+})
+
+
 module.exports = {
     getAllRecipes,
     getRecipeByTitle,
-    postRecipe
+    getLatestRecipe,
+    postRecipe, 
+    deleteRecipe
 }
