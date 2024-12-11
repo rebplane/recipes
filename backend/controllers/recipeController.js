@@ -20,6 +20,14 @@ const getAllRecipes = asyncHandler(async(req, res) => {
 const getRecipeByTitle = asyncHandler(async(req, res) => {
     try {
         var recipe = await Recipe.findOne({ title: req.params.title.toLowerCase()});
+        recipe.img = "http://localhost:5000/" + recipe.img.replace("\\", "/");
+
+        console.log(recipe.steps[0].img)
+        for (i=0; i<recipe.steps.length; i++) {
+            if (recipe.steps[i].img != "") {
+                recipe.steps[i].img = "http://localhost:5000/" + recipe.steps[i].img.replace("\\", "/");
+            }
+        }
         res.status(200).json(recipe);
     } catch(error) {
         console.log("Error in fetching recipe: ", error.message);
@@ -34,9 +42,11 @@ const postRecipe = asyncHandler(async(req, res) => {
 
     const recipe = req.body;
 
-    console.log(req.body)
+    console.log(req.body.title)
+    // console.log(req.img)
+    console.log(req.files)
 
-    if (!req.body.title || !req.body.short_desc || !req.body.img || !req.body.prep_time || !req.body.cook_time || !req.body.servings || !req.body.tags || !req.body.more_info || !req.body.ingredients || !req.body.steps) {
+    if (!req.body.title || !req.body.short_desc || !req.body.prep_time || !req.body.cook_time || !req.body.servings || !req.body.tags || !req.body.more_info || !req.body.ingredients || !req.body.steps) {
         return res.status(400).json({success:false, message: "Please fill out all required fields."})
     }
 
@@ -56,6 +66,26 @@ const postRecipe = asyncHandler(async(req, res) => {
     recipe.servings = Number(recipe.servings);
 
     recipe.title = recipe.title.toLowerCase();
+
+    var img_found = false
+
+    // Process the images
+    for (i=0; i < req.files.length; i++) {
+        image = req.files[i]
+        if (image.fieldname === 'img') {
+            recipe.img = req.files[i].path
+            img_found = true
+        } else {
+            index = Number(req.files[i].fieldname.charAt(6))
+            recipe.steps[i]['img'] = req.files[i].path
+        }
+    }
+
+    if (img_found === false) {
+        return res.status(400).json({success:false, message: "Please fill out all required fields."})
+    }
+
+    console.log(recipe)
 
     const newRecipe = new Recipe(recipe);
 

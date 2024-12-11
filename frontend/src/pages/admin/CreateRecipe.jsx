@@ -12,6 +12,7 @@ function CreateRecipe() {
     const [stepValues, setStepValues] = useState([{step: "", img: ""}]);
     const [tags, setTags] = useState([]);
     const [cboxes, setCboxes] = useState({});
+    const [file, setFile] = useState();
 
     const [newRecipe, setNewRecipe] = useState({
         title: '',
@@ -30,12 +31,17 @@ function CreateRecipe() {
         getTags(setTags);
     }, []);
 
+    let handleImgChange = (e) => {
+        setFile(e.target.files[0]);
+        setNewRecipe({ ...newRecipe, img: file});
+    }
+
     // Ingredient Handlers
     let handleIngredientChange = (i, e) => {
         let newIngredientValues = [...ingredientValues];
         newIngredientValues[i][e.target.name] = e.target.value;
         setIngredientValues(newIngredientValues);
-        setNewRecipe({ ...newRecipe, ingredients: ingredientValues })
+        setNewRecipe({ ...newRecipe, ingredients: newIngredientValues })
     }
 
     let addIngredientFields = () => {
@@ -46,14 +52,19 @@ function CreateRecipe() {
         let newIngredientValues = [...ingredientValues];
         newIngredientValues.splice(i, 1);
         setIngredientValues(newIngredientValues);
+        setNewRecipe({...newRecipe, ingredients: newIngredientValues })
     }
 
     // Instructions/steps handler
     let handleStepChange = (i, e) => {
         let newStepValues = [...stepValues];
-        newStepValues[i][e.target.name] = e.target.value;
+        if (e.target.name === 'img') {
+            newStepValues[i][e.target.name] = e.target.files[0]
+        } else {
+            newStepValues[i][e.target.name] = e.target.value;
+        }
         setStepValues(newStepValues);
-        setNewRecipe({ ...newRecipe, steps: stepValues })
+        setNewRecipe({ ...newRecipe, steps: newStepValues })
     }
 
     let addStepFields = () => {
@@ -64,6 +75,7 @@ function CreateRecipe() {
         let newStepValues = [...stepValues];
         newStepValues.splice(i, 1);
         setStepValues(newStepValues);
+        setNewRecipe({ ...newRecipe, steps: newStepValues})
     }
 
     let handleTags = ({ target }) => {
@@ -123,8 +135,7 @@ function CreateRecipe() {
                         className="block text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" 
                         id="file_input" 
                         type="file" 
-                        value={newRecipe.img}
-                        onChange={(e) => setNewRecipe({ ...newRecipe, img: e.target.value })}
+                        onChange={handleImgChange}
                         required/>
                 </div>
 
@@ -253,7 +264,6 @@ function CreateRecipe() {
             
                     <textarea type="text" name="step" value={element.name} onChange={e => handleStepChange(index, e)} className="block w-full p-4 text-gray-900 border border-black rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" placeholder=" " required />
                     <input type="file" name="img" value={element.name} onChange={e => handleStepChange(index, e)} className="block mt-3 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"/>
-                    
                     </div>
                 ))}
 

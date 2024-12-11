@@ -30,9 +30,8 @@ function RecipePage() {
                         {recipe.short_desc}
                         </p>
 
-                        {/* TODO get image from backend */}
                         <div class="grid grid-cols-2 gap-5">
-                            <img class="col-span-1" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Burger"/>
+                            <img class="col-span-1" src={recipe.img} alt="Burger"/>
 
                             <div class="flex">
                                 <div class="max-w-xl border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 w-fit">
@@ -88,6 +87,7 @@ function RecipePage() {
                             {recipe.steps.map((element, index) =>(
                                 <p class="text-md w-fit col-span-2">
                                 <b>{index + 1}) </b> {element.step} 
+                                    <img class="max-w-xl mt-3" src={element.img} alt="Burger"/>
                                 </p>
 
                                 // TODO: Get instruction image

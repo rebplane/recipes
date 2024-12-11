@@ -1,7 +1,12 @@
 import axios from 'axios';
 
 export function postRecipe(newRecipe) {
-    axios.post("recipes/", newRecipe)
+    console.log(newRecipe)
+    axios.post("recipes/", newRecipe, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        }
+    })
     .then((res) => {
         if (res.status == 200) {
             console.log(newRecipe)
@@ -13,7 +18,8 @@ export function postRecipe(newRecipe) {
 export function getRecipe(setRecipe, recipe_title) {
     axios.get(`recipes/${recipe_title}`)
     .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
+        console.log(res.data.img)
         // Capitalize the first letter of every word in the recipe title
         var recipe_title = res.data.title.split(' ');
         for (var i=0; i < recipe_title.length; i++) {
