@@ -38,7 +38,7 @@ export function getRecipe(setRecipe, recipe_title) {
 
 
 // GET the recipe with title <recipe_title> if <recipe_title> is not undefined
-export function getEditRecipe(setRecipe, setIngredientValues, setStepValues, setTags, recipe_title) {
+export function getEditRecipe(setRecipe, setIngredientValues, setStepValues, setStepPreview, setTags, recipe_title) {
     axios.get(`recipes/${recipe_title}`)
     .then((res) => {
         res.data.title = capitalizeWords(res.data.title);
@@ -52,7 +52,16 @@ export function getEditRecipe(setRecipe, setIngredientValues, setStepValues, set
         for (var i=0; i < res.data.tags.length; i++) {
             newCboxes[res.data.tags[i]] = true;
         }
-        console.log(newCboxes)
+
+        var stepPreview = []
+        for (var i=0; i < res.data.steps.length; i++) {
+            if (res.data.steps[i]['img'] && res.data.steps[i]['img'] !== null && res.data.steps[i]['img'] !== '') {
+                stepPreview.push(res.data.steps[i]['img']);
+            } else {
+                stepPreview.push(null);
+            }
+        }
+
         setTags(newCboxes);
         setRecipe({ ...res.data, tags: newCboxes})
     })

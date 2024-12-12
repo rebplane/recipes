@@ -171,16 +171,14 @@ const editRecipe = asyncHandler(async(req, res) => { // TODO, also delete old im
     for (var i=0; i < recipe.steps.length; i++) {
         if (recipe.steps[i]['img']) {
             recipe.steps[i]['img'] = recipe.steps[i]['img'].replace(BASE_URL, "").replace("/", "\\");
-        }
+        } 
     }
 
     // Process the images and delete the old images
     try {
         var oldRecipe = await Recipe.findOne({title: req.params.title.toLowerCase()})
-        console.log(req.files.length)
         for (i=0; i < req.files.length; i++) {
             var image = req.files[i]
-            console.log(image)
             if (image.fieldname === 'img') {
                 recipe.img = req.files[i].path;
                 console.log(recipe.img);
@@ -190,9 +188,17 @@ const editRecipe = asyncHandler(async(req, res) => { // TODO, also delete old im
                 
                 recipe.steps[index]['img'] = req.files[i].path;
 
+                // Remove an old image
                 if (oldRecipe.steps[index] && oldRecipe.steps[index]['img']) {
                     unlinkAsync(oldRecipe.steps[index]['img']);
                 }
+            }
+        }
+
+        // Remove old images if they do not exist anymore
+        for (var i=0; i < oldRecipe.steps.length; i++) {
+            if (oldRecipe.steps[i] && oldRecipe.steps[i]['img'] && (!recipe.steps[i]['img'] || recipe.steps[i]['img'] === '')) {
+                unlinkAsync(oldRecipe.steps[i]['img']);
             }
         }
     }
@@ -201,7 +207,6 @@ const editRecipe = asyncHandler(async(req, res) => { // TODO, also delete old im
         res.status(500).json({ success: false, message: "Server Error"})
     }
 
-    console.log('got here')
 
     try {
         if (recipe._id) {

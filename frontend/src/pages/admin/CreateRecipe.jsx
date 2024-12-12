@@ -14,6 +14,7 @@ function CreateRecipe() {
     const [tags, setTags] = useState([]);
     const [cboxes, setCboxes] = useState({});
     const [imgPreview, setImgPreview] = useState([]);
+    const [stepPreview, setStepPreview] = useState([]);
 
     
     const recipe_title = useParams().title
@@ -34,7 +35,7 @@ function CreateRecipe() {
     useEffect(() => {
         getTags(setTags);
         // Sets the pre-existing recipe if we are editing an already existing recipe
-        getEditRecipe(setNewRecipe, setIngredientValues, setStepValues, setCboxes, recipe_title);
+        getEditRecipe(setNewRecipe, setIngredientValues, setStepValues, setStepPreview, setCboxes, recipe_title);
     }, []);
 
     let handleImgChange = (e) => {
@@ -66,7 +67,10 @@ function CreateRecipe() {
     let handleStepChange = (i, e) => {
         let newStepValues = [...stepValues];
         if (e.target.name === 'img') {
-            newStepValues[i][e.target.name] = e.target.files[0]
+            newStepValues[i][e.target.name] = e.target.files[0];
+            let newStepPreview = [...stepPreview];
+            newStepPreview[i] = URL.createObjectURL(e.target.files[0]);
+            setStepPreview(newStepPreview);
         } else {
             newStepValues[i][e.target.name] = e.target.value;
         }
@@ -76,13 +80,26 @@ function CreateRecipe() {
 
     let addStepFields = () => {
         setStepValues([...stepValues, {step: "", img: ""}]);
+        setStepPreview(stepPreview.push(null))
     }
 
     let removeStepFields = (i) => {
         let newStepValues = [...stepValues];
         newStepValues.splice(i, 1);
         setStepValues(newStepValues);
-        setNewRecipe({ ...newRecipe, steps: newStepValues})
+        setNewRecipe({ ...newRecipe, steps: newStepValues});
+        setStepPreview(stepPreview.splice(i, 1));
+    }
+
+    let removeStepImage = (i) => {
+        let newStepValues = [...stepValues];
+        newStepValues[i]['img'] = '';
+        setStepValues(newStepValues);
+        setNewRecipe({ ...newRecipe, steps: newStepValues });
+        let newStepPreview = [...stepPreview];
+        newStepPreview[i] = null;
+        console.log(newStepPreview);
+        setStepPreview(newStepPreview);
     }
 
     let handleTags = ({ target }) => {
@@ -281,9 +298,20 @@ function CreateRecipe() {
                     </div>
             
                     <textarea type="text" name="step" value={element.step} onChange={e => handleStepChange(index, e)} className="block w-full p-4 text-gray-900 border border-black rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" placeholder=" " required />
+                    <div class="flex w-full">
                     <input type="file" name="img" value={element.name} onChange={e => handleStepChange(index, e)} className="block mt-3 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"/>
-                    {   recipe_title ?
-                            <img src={element.img}></img>
+                    <div class="flex">
+                    <button type="button" className="mt-3" onClick={() => removeStepImage(index)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-700">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+
+                    </button>
+                    </div>
+                    </div>
+
+                    {   stepPreview[index] !== null ?
+                            <img src={element.img} className="mt-3" alt=""></img>
                             : null
                     }
                     </div>
