@@ -34,7 +34,7 @@ function CreateRecipe() {
     useEffect(() => {
         getTags(setTags);
         // Sets the pre-existing recipe if we are editing an already existing recipe
-        getEditRecipe(setNewRecipe, setIngredientValues, setStepValues, recipe_title);
+        getEditRecipe(setNewRecipe, setIngredientValues, setStepValues, setCboxes, recipe_title);
     }, []);
 
     let handleImgChange = (e) => {
@@ -88,8 +88,8 @@ function CreateRecipe() {
     let handleTags = ({ target }) => {
         let newCboxes = {...cboxes};
         newCboxes[target.value] = target.checked;
-        setCboxes(newCboxes)
-        setNewRecipe({ ...newRecipe, tags: newCboxes})
+        setCboxes(newCboxes);
+        setNewRecipe({ ...newRecipe, tags: newCboxes});
     }
 
     let handleSubmit = (event) => {
@@ -100,7 +100,7 @@ function CreateRecipe() {
 
     let handleEdit = (event) => {
         event.preventDefault();
-        editRecipe(newRecipe);
+        editRecipe(newRecipe, recipe_title);
     }
 
     return (
@@ -202,7 +202,7 @@ function CreateRecipe() {
                         <div>
                             <input 
                                 id={element.title} 
-                                checked={tags[element.title]}
+                                checked={cboxes[element.title]}
                                 onClick={handleTags}
                                 type="checkbox" 
                                 value={element.title} 

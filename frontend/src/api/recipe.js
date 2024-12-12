@@ -38,21 +38,31 @@ export function getRecipe(setRecipe, recipe_title) {
 
 
 // GET the recipe with title <recipe_title> if <recipe_title> is not undefined
-export function getEditRecipe(setRecipe, setIngredientValues, setStepValues, recipe_title) {
+export function getEditRecipe(setRecipe, setIngredientValues, setStepValues, setTags, recipe_title) {
     axios.get(`recipes/${recipe_title}`)
     .then((res) => {
         res.data.title = capitalizeWords(res.data.title);
-        console.log(res.data.ingredients);
         setRecipe(res.data);
         setIngredientValues(res.data.ingredients);
         setStepValues(res.data.steps);
+
+        // Set the checkboxes of the tags to true
+        var newCboxes = {}; 
+
+        for (var i=0; i < res.data.tags.length; i++) {
+            newCboxes[res.data.tags[i]] = true;
+        }
+        console.log(newCboxes)
+        setTags(newCboxes);
+        setRecipe({ ...res.data, tags: newCboxes})
     })
     .catch(error => console.error(`Error: ${error}`))
 }
 
 // Edits the recipe with the new data info
-export function editRecipe(newRecipe) {
-    axios.post("recipes/edit/:title", newRecipe, {
+export function editRecipe(newRecipe, recipe_title) {
+    console.log(newRecipe)
+    axios.put(`recipes/${recipe_title}`, newRecipe, {
         headers: {
             'Content-Type': 'multipart/form-data',
         }

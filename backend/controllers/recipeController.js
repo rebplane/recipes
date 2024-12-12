@@ -14,7 +14,7 @@ function setRecipeImgs(recipe) {
     recipe.img = BASE_URL + recipe.img.replace("\\", "/");
 
     for (i=0; i<recipe.steps.length; i++) {
-        if (recipe.steps[i].img != "") {
+        if (recipe.steps[i].img) {
             recipe.steps[i].img = BASE_URL + recipe.steps[i].img.replace("\\", "/");
         }
     }
@@ -108,7 +108,7 @@ const postRecipe = asyncHandler(async(req, res) => {
             img_found = true
         } else {
             index = Number(req.files[i].fieldname.charAt(6))
-            recipe.steps[i]['img'] = req.files[i].path
+            recipe.steps[index]['img'] = req.files[i].path
         }
     }
 
@@ -131,6 +131,90 @@ const postRecipe = asyncHandler(async(req, res) => {
     }
 });
 
+// @desc Edits a pre-existing recipe in the database with title <title>
+// @route PUT /api/recipe/{title}
+// @access Admin 
+const editRecipe = asyncHandler(async(req, res) => { // TODO, also delete old images that we are not re-updating
+    const recipe = req.body;
+
+    // Turns the tags into type [String]
+    if (recipe.tags) {
+        var tags = [];
+
+        for (var key in recipe.tags) {
+            if (recipe.tags[key] === 'true') {
+                tags.push(key);
+            }
+        }
+        recipe.tags = tags
+    }
+
+    // Update the recipe fields if they were passed as form-data keys
+    if (recipe.prep_time) {
+        recipe.prep_time = Number(recipe.prep_time);
+    }
+    if (recipe.cook_time) {
+        recipe.cook_time = Number(recipe.cook_time);
+    }
+    if (recipe.servings) {
+        recipe.servings = Number(recipe.servings);
+    }
+
+    if (recipe.title) {
+        recipe.title = recipe.title.toLowerCase();
+    }
+
+    if (recipe.img) {
+        delete recipe.img;
+    }
+
+    for (var i=0; i < recipe.steps.length; i++) {
+        if (recipe.steps[i]['img']) {
+            recipe.steps[i]['img'] = recipe.steps[i]['img'].replace(BASE_URL, "").replace("/", "\\");
+        }
+    }
+
+    // Process the images and delete the old images
+    try {
+        var oldRecipe = await Recipe.findOne({title: req.params.title.toLowerCase()})
+        console.log(req.files.length)
+        for (i=0; i < req.files.length; i++) {
+            var image = req.files[i]
+            console.log(image)
+            if (image.fieldname === 'img') {
+                recipe.img = req.files[i].path;
+                console.log(recipe.img);
+                unlinkAsync(oldRecipe);
+            } else {
+                index = Number(req.files[i].fieldname.charAt(6));
+                
+                recipe.steps[index]['img'] = req.files[i].path;
+
+                if (oldRecipe.steps[index] && oldRecipe.steps[index]['img']) {
+                    unlinkAsync(oldRecipe.steps[index]['img']);
+                }
+            }
+        }
+    }
+    catch (error) {
+        console.error("Error in Create recipe:", error.message);
+        res.status(500).json({ success: false, message: "Server Error"})
+    }
+
+    console.log('got here')
+
+    try {
+        if (recipe._id) {
+            delete recipe._id;
+        }
+        var newRecipe = await Recipe.findOneAndUpdate({title:  req.params.title.toLowerCase()}, recipe);
+        res.status(201).json({success: true});
+    } catch (error) {
+        console.error("Error in Create recipe:", error.message);
+        res.status(500).json({ success: false, message: "Server Error"});
+    }
+})
+
 
 // @desc Delete recipe by title
 // @route DELETE /api/recipe/{title}
@@ -144,7 +228,7 @@ const deleteRecipe = asyncHandler(async(req, res) => {
         await unlinkAsync(recipe.img)
 
         for (i=0; i<recipe.steps.length; i++) {
-            if (recipe.steps[i].img != "") {
+            if (recipe.steps[i].img) {
                 await unlinkAsync(recipe.steps[i].img)
             }
         }
@@ -164,5 +248,6 @@ module.exports = {
     getRecipeByTitle,
     getLatestRecipe,
     postRecipe, 
+    editRecipe,
     deleteRecipe
 }

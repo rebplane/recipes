@@ -15,21 +15,21 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-const { getAllRecipes, postRecipe, getRecipeByTitle, deleteRecipe, getLatestRecipe } = require('../controllers/recipeController')
+const { getAllRecipes, postRecipe, getRecipeByTitle, deleteRecipe, getLatestRecipe, editRecipe } = require('../controllers/recipeController')
 
 // API endpoints, all preceded with /api/recipes
-router.get('/', getAllRecipes);    // {URL}/api/recipes/
-router.get('/latest/', getLatestRecipe);  // {URL}/api/recipes/latest/
-router.get('/:title', getRecipeByTitle); // {URL}/api/recipes/:title
+router.get('/', getAllRecipes);    // GET {BASE_URL}/api/recipes/
+router.get('/latest/', getLatestRecipe);  // GET {BASE_URL}/api/recipes/latest/
+router.get('/:title', getRecipeByTitle); // GET {BASE_URL}/api/recipes/:title
 
 // Allow POSTing image files to the route
 var cpUpload = upload.any()
 // var cpUpload = upload.single('img') 
 
-router.post('/', cpUpload, postRecipe);  // {URL}/api/recipes/
+router.post('/', cpUpload, postRecipe);  // POST {BASE_URL}/api/recipes/
 
-// TODO PUT request
+router.put('/:title', cpUpload, editRecipe); // PUT {BASE_URL}/api/recipes/:title
 
-router.delete('/:title', deleteRecipe); // {URL}/api/recipes/:title
+router.delete('/:title', deleteRecipe); // DELETE {BASE_URL}/api/recipes/:title
 
 module.exports = router;
