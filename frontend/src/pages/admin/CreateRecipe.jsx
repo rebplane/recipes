@@ -1,11 +1,13 @@
 
-import React, {useState, useEffect} from 'react'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import React, {useState, useEffect} from 'react';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import { useCookies } from 'react-cookie';
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getTags } from '../../api/tag';
 import { postRecipe, editRecipe, getEditRecipe } from '../../api/recipe'
+import { userVerify } from '../../api/auth';
 
 function CreateRecipe() {
 
@@ -33,7 +35,19 @@ function CreateRecipe() {
         steps: [],
     })
 
+    const navigate = useNavigate();
+    const [cookies, removeCookies] = useCookies(['token']);
+    const [user, setUser] = useState("");
+
+
     useEffect(() => {
+        const verifyCookie = async() => {
+            let status = userVerify(setUser);
+            return status;
+        };
+
+        verifyCookie();
+
         getTags(setTags);
         // Sets the pre-existing recipe if we are editing an already existing recipe
         getEditRecipe(setNewRecipe, setIngredientValues, setStepValues, setStepPreview, setCboxes, recipe_title);

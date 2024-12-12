@@ -1,7 +1,7 @@
 const express = require('express');
-const router = express.Router()
-const multer = require('multer')
-const path = require('path')
+const router = express.Router();
+const multer = require('multer');
+const path = require('path');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 const { getAllRecipes, postRecipe, getRecipeByTitle, deleteRecipe, getLatestRecipe, editRecipe } = require('../controllers/recipeController')
+
 
 // API endpoints, all preceded with /api/recipes
 router.get('/', getAllRecipes);    // GET {BASE_URL}/api/recipes/

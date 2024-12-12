@@ -5,6 +5,7 @@ import RecipeList from './pages/RecipeList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CreateRecipe from './pages/admin/CreateRecipe';
 import axios from 'axios';
+import Login from './pages/auth/Login';
 
 axios.defaults.baseURL = "http://127.0.0.1:5000/api/";
 
@@ -16,6 +17,8 @@ function App() {
         <Route path='/recipe' element={<RecipePage/>}></Route>
         <Route path='/recipes' element={<RecipeList/>}></Route>
         <Route path='/recipe/:title' element={<RecipePage/>}></Route>
+
+        <Route path='/admin/login' element={<Login/>}></Route>
 
         <Route path='/admin/create' element={<CreateRecipe/>}></Route>
         <Route path='/admin/edit/:title' element={<CreateRecipe/>}></Route>
