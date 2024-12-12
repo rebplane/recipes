@@ -4,7 +4,9 @@ const { promisify } = require('util')
 const fs = require('fs');
 const { model } = require('mongoose');
 
-const BASE_URL = 'http://localhost:5000/'
+const production = ""
+const development = 'http://localhost:5000/'
+const BASE_URL = (process.env.NODE_ENV ? production : development)
 const unlinkAsync = promisify(fs.unlink)
 
 // Provides the static URL to the frontend in order to display the static images

@@ -28,6 +28,8 @@ var cpUpload = upload.any()
 
 router.post('/', cpUpload, postRecipe);  // {URL}/api/recipes/
 
+// TODO PUT request
+
 router.delete('/:title', deleteRecipe); // {URL}/api/recipes/:title
 
 module.exports = router;

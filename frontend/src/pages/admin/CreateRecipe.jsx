@@ -3,21 +3,25 @@ import React, {useState, useEffect} from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
+import { useParams } from "react-router-dom";
 import { getTags } from '../../api/tag';
-import { postRecipe } from '../../api/recipe'
+import { postRecipe, editRecipe, getEditRecipe } from '../../api/recipe'
 
 function CreateRecipe() {
 
     const [ingredientValues, setIngredientValues] = useState([{amt: "", ing: ""}]);
-    const [stepValues, setStepValues] = useState([{step: "", img: ""}]);
+    const [stepValues, setStepValues] = useState([{step: "", img: []}]);
     const [tags, setTags] = useState([]);
     const [cboxes, setCboxes] = useState({});
-    const [file, setFile] = useState();
+    const [imgPreview, setImgPreview] = useState([]);
+
+    
+    const recipe_title = useParams().title
 
     const [newRecipe, setNewRecipe] = useState({
         title: '',
         short_desc: '',
-        img: '',
+        img: [],
         prep_time: '',
         cook_time: '',
         servings: '',
@@ -29,11 +33,14 @@ function CreateRecipe() {
 
     useEffect(() => {
         getTags(setTags);
+        // Sets the pre-existing recipe if we are editing an already existing recipe
+        getEditRecipe(setNewRecipe, setIngredientValues, setStepValues, recipe_title);
     }, []);
 
     let handleImgChange = (e) => {
-        setFile(e.target.files[0]);
-        setNewRecipe({ ...newRecipe, img: file});
+        let newFile = e.target.files[0]
+        setNewRecipe({ ...newRecipe, img: newFile});
+        setImgPreview(URL.createObjectURL(newFile));
     }
 
     // Ingredient Handlers
@@ -87,7 +94,13 @@ function CreateRecipe() {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        postRecipe(newRecipe)
+        console.log(newRecipe);
+        postRecipe(newRecipe);
+    }
+
+    let handleEdit = (event) => {
+        event.preventDefault();
+        editRecipe(newRecipe);
     }
 
     return (
@@ -137,6 +150,11 @@ function CreateRecipe() {
                         type="file" 
                         onChange={handleImgChange}
                         required/>
+                        {   recipe_title ?
+                            <img src={newRecipe.img}></img>
+                            : <img src={imgPreview}></img>
+                        }
+                    
                 </div>
 
                 {/* Prep Time */}
@@ -216,8 +234,8 @@ function CreateRecipe() {
                     <div className="relative z-0 mb-5 group" key={index}>
 
                             <div className="flex gap-x-3">
-                            <input type="text" name="amt" value={element.name} onChange={e => handleIngredientChange(index, e)} className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required placeholder="Amount (e.g. 1 lb)" />
-                            <input type="text" name="ing" value={element.name} onChange={e => handleIngredientChange(index, e)} className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required placeholder="Ingredient (e.g. tomato)" />
+                            <input type="text" name="amt" value={element.amt} onChange={e => handleIngredientChange(index, e)} className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required placeholder="Amount (e.g. 1 lb)" />
+                            <input type="text" name="ing" value={element.ing} onChange={e => handleIngredientChange(index, e)} className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" required placeholder="Ingredient (e.g. tomato)" />
                             
                             {
                                 index === ingredientValues.length - 1 ?
@@ -262,8 +280,12 @@ function CreateRecipe() {
                         }
                     </div>
             
-                    <textarea type="text" name="step" value={element.name} onChange={e => handleStepChange(index, e)} className="block w-full p-4 text-gray-900 border border-black rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" placeholder=" " required />
+                    <textarea type="text" name="step" value={element.step} onChange={e => handleStepChange(index, e)} className="block w-full p-4 text-gray-900 border border-black rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" placeholder=" " required />
                     <input type="file" name="img" value={element.name} onChange={e => handleStepChange(index, e)} className="block mt-3 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"/>
+                    {   recipe_title ?
+                            <img src={element.img}></img>
+                            : null
+                    }
                     </div>
                 ))}
 
@@ -278,11 +300,19 @@ function CreateRecipe() {
 
                 
                 <p class="mb-5">Recipe page will be added with URL /recipe/{"<recipe_name>"}</p>
-    
-                <button 
+                
+                {
+                    recipe_title ?
+                     <button 
+                     type="button" 
+                     onClick={handleEdit}
+                     className="text-white bg-indigo-800 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                    :
+                    <button 
                     type="button" 
                     onClick={handleSubmit}
                     className="text-white bg-indigo-800 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                }
 
                 </form>
             </div>

@@ -18,6 +18,7 @@ function App() {
         <Route path='/recipe/:title' element={<RecipePage/>}></Route>
 
         <Route path='/admin/create' element={<CreateRecipe/>}></Route>
+        <Route path='/admin/edit/:title' element={<CreateRecipe/>}></Route>
       </Routes>
     </BrowserRouter>
   );
