@@ -14,7 +14,8 @@ function CreateRecipe() {
     const [tags, setTags] = useState([]);
     const [cboxes, setCboxes] = useState({});
     const [imgPreview, setImgPreview] = useState([]);
-    const [stepPreview, setStepPreview] = useState([]);
+    const [stepPreview, setStepPreview] = useState([null]);
+    const [error, setError] = useState(false);
 
     
     const recipe_title = useParams().title
@@ -68,7 +69,7 @@ function CreateRecipe() {
         let newStepValues = [...stepValues];
         if (e.target.name === 'img') {
             newStepValues[i][e.target.name] = e.target.files[0];
-            let newStepPreview = [...stepPreview];
+            let newStepPreview = stepPreview;
             newStepPreview[i] = URL.createObjectURL(e.target.files[0]);
             setStepPreview(newStepPreview);
         } else {
@@ -80,7 +81,9 @@ function CreateRecipe() {
 
     let addStepFields = () => {
         setStepValues([...stepValues, {step: "", img: ""}]);
-        setStepPreview(stepPreview.push(null))
+        let newStepPreview = stepPreview;
+        newStepPreview.push(null);
+        setStepPreview(newStepPreview);
     }
 
     let removeStepFields = (i) => {
@@ -88,7 +91,9 @@ function CreateRecipe() {
         newStepValues.splice(i, 1);
         setStepValues(newStepValues);
         setNewRecipe({ ...newRecipe, steps: newStepValues});
-        setStepPreview(stepPreview.splice(i, 1));
+        let newStepPreview = stepPreview;
+        newStepPreview.split(i, 1);
+        setStepPreview(newStepPreview);
     }
 
     let removeStepImage = (i) => {
@@ -96,9 +101,8 @@ function CreateRecipe() {
         newStepValues[i]['img'] = '';
         setStepValues(newStepValues);
         setNewRecipe({ ...newRecipe, steps: newStepValues });
-        let newStepPreview = [...stepPreview];
+        let newStepPreview = stepPreview;
         newStepPreview[i] = null;
-        console.log(newStepPreview);
         setStepPreview(newStepPreview);
     }
 
@@ -111,13 +115,12 @@ function CreateRecipe() {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        console.log(newRecipe);
-        postRecipe(newRecipe);
+        postRecipe(newRecipe, setError);
     }
 
     let handleEdit = (event) => {
         event.preventDefault();
-        editRecipe(newRecipe, recipe_title);
+        editRecipe(newRecipe, setError, recipe_title);
     }
 
     return (
@@ -125,6 +128,16 @@ function CreateRecipe() {
             <Header/>
 
             <div className="mt-10">
+                {error ?
+                    <div class="max-w-2xl mx-5 lg:ml-36 bg-red-300 flex p-3 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                    </svg>
+                    <p class="ml-3 text-black">Please fill in all fields.</p>
+                    </div>
+                    : null
+                }
+                
 
                 <form className="max-w-2xl mx-5 lg:ml-36" onSubmit={handleSubmit}>
 

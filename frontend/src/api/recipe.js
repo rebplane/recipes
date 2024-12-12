@@ -10,7 +10,7 @@ function capitalizeWords(str) {
 }
 
 // Sends a POST request to create a new recipe in the database
-export function postRecipe(newRecipe) {
+export function postRecipe(newRecipe, setError) {
     console.log(newRecipe)
     axios.post("recipes/", newRecipe, {
         headers: {
@@ -18,11 +18,16 @@ export function postRecipe(newRecipe) {
         }
     })
     .then((res) => {
-        if (res.status == 200) {
-            console.log(newRecipe)
+        if (res.status == 201) {
+            console.log("got here")
+            window.location = `/recipe/${newRecipe.title}`
         }
     })
-    .catch(error => console.error(`Error: ${error}`))
+    .catch((error) => {
+        console.error(`Error: ${error}`)
+        setError(true);
+        alert('Please fill in all fields.')
+    })
 }
 
 // Gets the recipe with title <recipe_title>
@@ -64,12 +69,15 @@ export function getEditRecipe(setRecipe, setIngredientValues, setStepValues, set
 
         setTags(newCboxes);
         setRecipe({ ...res.data, tags: newCboxes})
+        setStepPreview(stepPreview);
     })
-    .catch(error => console.error(`Error: ${error}`))
+    .catch((error) => {
+        console.error(`Error: ${error}`)
+    })
 }
 
 // Edits the recipe with the new data info
-export function editRecipe(newRecipe, recipe_title) {
+export function editRecipe(newRecipe, setError, recipe_title) {
     console.log(newRecipe)
     axios.put(`recipes/${recipe_title}`, newRecipe, {
         headers: {
@@ -77,11 +85,16 @@ export function editRecipe(newRecipe, recipe_title) {
         }
     })
     .then((res) => {
-        if (res.status == 200) {
-            console.log(newRecipe)
+        if (res.status == 201) {
+            console.log("got here")
+            window.location = `/recipe/${newRecipe.title}`
         }
     })
-    .catch(error => console.error(`Error: ${error}`))
+    .catch((error) => {
+        console.error(`Error: ${error}`);
+        setError(true);
+        alert('Please fill in all fields.');
+    })
 }
 
 
