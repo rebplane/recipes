@@ -17,7 +17,7 @@ app.use('/uploads', express.static('uploads'));
 app.use(express.static(__dirname));
 app.use(cookieParser());
 
-var whitelist = ['http://localhost:3000']
+var whitelist = ['http://localhost:3000', 'https://recipes-frontend-ykxm.onrender.com']
 
 var corsOptions = {
   credentials: true,
