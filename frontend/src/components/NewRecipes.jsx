@@ -1,7 +1,15 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
 import '../index.css'
+import { getLatestThreeRecipes } from '../api/recipe';
 
 function NewRecipes() {
+
+    let [recipes, setRecipes] = useState([{}, {}, {}]);
+
+    useEffect(() => {
+        getLatestThreeRecipes(setRecipes)
+    }, [])
+
     return (
         <div flex>
             <div class="flex justify-center mt-5">
@@ -15,32 +23,32 @@ function NewRecipes() {
                 <div class="col-span-2 grid-rows-2">
 
                     <figure class="relative w-fit transition-all duration-300 cursor-pointer filter h-50 row-span-1 mb-3 gap-x-3">
-                    <a href="/">
-                        <img class="h-full w-fit object-fill" src="https://www.allrecipes.com/thmb/5JVfA7MxfTUPfRerQMdF-nGKsLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/25473-the-perfect-basic-burger-DDMFS-4x3-56eaba3833fd4a26a82755bcd0be0c54.jpg" alt="Burger"/>
+                    <a href={"recipe/"+ recipes[0].title}>
+                        <img class="h-96 w-fit object-fill" name={recipes[0].title} src={recipes[0].img} alt={recipes[0].title}/>
                     </a>
                     <figcaption class="absolute px-4 text-lg text-black bottom-5 bg-white">
-                        <p class="font-bold text-md">Burger</p>
+                        <p class="font-bold text-md">{recipes[0].title}</p>
                     </figcaption>
                     </figure>
 
                     <figure class="relative w-full transition-all duration-300 cursor-pointer filter h-50 row-span-1">
-                        <a href="/">
-                            <img class="h-full w-fit object-fill" src="https://www.allrecipes.com/thmb/5JVfA7MxfTUPfRerQMdF-nGKsLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/25473-the-perfect-basic-burger-DDMFS-4x3-56eaba3833fd4a26a82755bcd0be0c54.jpg" alt="Burger"/>
+                        <a href={"recipe/"+ recipes[1].title}>
+                            <img class="h-96 w-fit object-fill" name={recipes[1].title} src={recipes[1].img} alt={recipes[1].title}/>
                         </a>
                         <figcaption class="absolute px-4 text-lg text-black bottom-5 bg-white text-center">
-                            <p class="font-bold text-md">Burger</p>
+                            <p class="font-bold text-md">{recipes[1].title}</p>
                         </figcaption>
                     </figure>
                     
                 </div>
 
                 <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-3">
-                <a href="/">
-                    <img class="h-full w-full" src="https://assets.bonappetit.com/photos/656f48d75b552734225041ba/1:1/w_2560%2Cc_limit/20231120-WEB-Lasanga-6422.jpg" alt="Burger"/>
-                </a>
-                <figcaption class="absolute px-4 text-lg text-black bottom-5 bg-white ml-3">
-                    <p class="font-bold text-md">Lasagna</p>
-                </figcaption>
+                    <a href={"recipe/"+ recipes[2].title}>
+                        <img class="h-full w-full" name={recipes[2].title} src={recipes[2].img} alt={recipes[2].title}/>
+                    </a>
+                    <figcaption class="absolute px-4 text-lg text-black bottom-5 bg-white ml-3">
+                        <p class="font-bold text-md">{recipes[2].title}</p>
+                    </figcaption>
                 </figure>
                 </div>
             </div>

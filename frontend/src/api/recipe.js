@@ -36,11 +36,34 @@ export function getRecipe(setRecipe, recipe_title) {
     .then((res) => {
         res.data.title = capitalizeWords(res.data.title)
         setRecipe(res.data);
-        console.log(res.data);
     })
     .catch(error => console.error(`Error: ${error}`))
 }
 
+// Gets the latest three recipes
+export function getLatestThreeRecipes(setRecipe) {
+    axios.get('recipes/latest3/')
+    .then((res) => {
+        for (var i=0; i < 3; i++) {
+            res.data[i].title = capitalizeWords(res.data[i].title)
+        }
+        console.log(res.data)
+        setRecipe(res.data);
+    })
+    .catch(error => console.error(`Error: ${error}`))
+}
+
+// Gets all the recipes
+export function getRecipes(setRecipe) {
+    axios.get('recipes/')
+    .then((res) => {
+        for (var i=0; i < res.data.length; i++) {
+            res.data[i].title = capitalizeWords(res.data[i].title)
+        }
+        setRecipe(res.data);
+    })
+    .catch(error => console.error(`Error: ${error}`))
+}
 
 // GET the recipe with title <recipe_title> if <recipe_title> is not undefined
 export function getEditRecipe(setRecipe, setIngredientValues, setStepValues, setStepPreview, setTags, recipe_title) {
@@ -103,6 +126,18 @@ export function getLatestRecipe(setRecipe) {
     axios.get('recipes/latest/')
     .then((res) => {
         res.data.title = capitalizeWords(res.data.title)
+        setRecipe(res.data);
+    })
+    .catch(error => console.error(`Error: ${error}`))
+}
+
+
+// Gets a random recipe
+export function getRandomRecipe(setRecipe) {
+    axios.get('recipes/random/')
+    .then((res) => {
+        res.data.title = capitalizeWords(res.data.title);
+        res.data.short_desc = res.data.short_desc.split(".")[0]; // Takes only the first sentence of the recipe short description
         setRecipe(res.data);
     })
     .catch(error => console.error(`Error: ${error}`))

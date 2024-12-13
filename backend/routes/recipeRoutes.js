@@ -15,12 +15,14 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-const { getAllRecipes, postRecipe, getRecipeByTitle, deleteRecipe, getLatestRecipe, editRecipe } = require('../controllers/recipeController')
+const { getAllRecipes, postRecipe, getRecipeByTitle, deleteRecipe, getLatestRecipe, editRecipe, getThreeLatestRecipes, getRandomRecipe } = require('../controllers/recipeController')
 
 
 // API endpoints, all preceded with /api/recipes
 router.get('/', getAllRecipes);    // GET {BASE_URL}/api/recipes/
 router.get('/latest/', getLatestRecipe);  // GET {BASE_URL}/api/recipes/latest/
+router.get('/latest3/', getThreeLatestRecipes); // GET {BASE_URL}/api/recipes/latest3/
+router.get('/random/', getRandomRecipe); // GET {BASE_URL}/api/recipes/random/
 router.get('/:title', getRecipeByTitle); // GET {BASE_URL}/api/recipes/:title
 
 // Allow POSTing image files to the route

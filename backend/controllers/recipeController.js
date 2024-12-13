@@ -27,6 +27,9 @@ function setRecipeImgs(recipe) {
 const getAllRecipes = asyncHandler(async(req, res) => {
     try {
         const recipes = await Recipe.find();
+        for (var i=0; i < recipes.length; i++) {
+            recipes[i] = setRecipeImgs(recipes[i])
+        }
         res.status(200).json(recipes); 
     } catch(error) {
         console.log("Error in fetching recipes: ", error.message);
@@ -41,6 +44,43 @@ const getAllRecipes = asyncHandler(async(req, res) => {
 const getLatestRecipe = asyncHandler(async(req, res) => {
     try {
         var recipe = await Recipe.findOne().sort({ createdAt: -1 }).limit(1);
+        console.log(recipe)
+        recipe = setRecipeImgs(recipe);
+        res.status(200).json(recipe);
+    }
+    catch(error) {
+        console.log("Error in fetching recipe: ", error.message);
+        res.status(500).json({ success: false, message: "Server Error"});
+    }
+})
+
+
+// @desc Get the three newest recipe added to the database
+// @route GET /api/recipes/latest
+// @access Public
+const getThreeLatestRecipes = asyncHandler(async(req, res) => {
+    try {
+        var recipes = await Recipe.find().sort({ createdAt: -1 }).limit(3);
+        for (var i=0; i < recipes.length; i++) {
+            recipes[i] = setRecipeImgs(recipes[i])
+        }
+        res.status(200).json(recipes);
+    }
+    catch(error) {
+        console.log("Error in fetching recipe: ", error.message);
+        res.status(500).json({ success: false, message: "Server Error"});
+    }
+})
+
+
+// @desc Get a random recipe 
+// @route GET /api/recipes/random/
+// @access Public
+const getRandomRecipe = asyncHandler(async(req, res) => {
+
+    try {
+        var recipe = await Recipe.aggregate().sample(1);
+        recipe = recipe[0];
         recipe = setRecipeImgs(recipe);
         res.status(200).json(recipe);
     }
@@ -252,6 +292,8 @@ module.exports = {
     getAllRecipes,
     getRecipeByTitle,
     getLatestRecipe,
+    getThreeLatestRecipes,
+    getRandomRecipe,
     postRecipe, 
     editRecipe,
     deleteRecipe

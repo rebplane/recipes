@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CreateRecipe from './pages/admin/CreateRecipe';
 import axios from 'axios';
 import Login from './pages/auth/Login';
+import ComingSoon from './pages/ComingSoon';
+import About from './pages/About';
 
 axios.defaults.baseURL = "http://127.0.0.1:5000/api/";
 
@@ -17,6 +19,10 @@ function App() {
         <Route path='/recipe' element={<RecipePage/>}></Route>
         <Route path='/recipes' element={<RecipeList/>}></Route>
         <Route path='/recipe/:title' element={<RecipePage/>}></Route>
+
+        <Route path='/blog' element={<ComingSoon/>}></Route>
+        <Route path='/favorites' element={<ComingSoon/>}></Route>
+        <Route path='/about' element={<About/>}></Route>
 
         <Route path='/admin/login' element={<Login/>}></Route>
 
