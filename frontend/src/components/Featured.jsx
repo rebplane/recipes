@@ -16,7 +16,7 @@ function Featured() {
             <div class="flex flex-row justify-center">
                 <div class="max-w-screen-xl bg-indigo-950 ">
                     <div class="flex md:flex-row text-center items-center w-screen max-w-full">
-                        <img class="h-full w-full" src={recipe.img} alt=""/>
+                        <img class="h-96 w-1/2" src={recipe.img} alt=""/>
                         
                         <div class="w-full p-5">
 
