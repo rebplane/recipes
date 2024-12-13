@@ -4,20 +4,24 @@ const { promisify } = require('util')
 const fs = require('fs');
 const { model } = require('mongoose');
 
-const production = "https://recipes-wzua.onrender.com/"
-const development = 'http://localhost:5000/'
-const BASE_URL = (process.env.NODE_ENV ? production : development)
+// const production = "https://recipes-wzua.onrender.com/"
+// const development = 'http://localhost:5000/'
+// const BASE_URL = (process.env.NODE_ENV ? production : development)
+
+const BASE_URL = "/uploads/"
+
 const unlinkAsync = promisify(fs.unlink)
 
 // Provides the static URL to the frontend in order to display the static images
 function setRecipeImgs(recipe) {
-    recipe.img = BASE_URL + recipe.img.replace("\\", "/");
+    recipe.img = BASE_URL + recipe.img.slice(24);
 
     for (i=0; i<recipe.steps.length; i++) {
         if (recipe.steps[i].img) {
-            recipe.steps[i].img = BASE_URL + recipe.steps[i].img.replace("\\", "/");
+            recipe.steps[i].img = BASE_URL + recipe.steps[i].img.slice(24);
         }
     }
+    // console.log(recipe);
     return recipe;
 }
 

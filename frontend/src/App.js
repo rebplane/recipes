@@ -10,6 +10,7 @@ import ComingSoon from './pages/ComingSoon';
 import About from './pages/About';
 
 axios.defaults.baseURL = "https://recipes-wzua.onrender.com/api/";
+// axios.defaults.baseURL = "http://localhost:5000/api/"
 
 function App() {
   return (
