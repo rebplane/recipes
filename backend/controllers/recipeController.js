@@ -4,7 +4,7 @@ const { promisify } = require('util')
 const fs = require('fs');
 const { model } = require('mongoose');
 
-const production = ""
+const production = "https://recipes-wzua.onrender.com/"
 const development = 'http://localhost:5000/'
 const BASE_URL = (process.env.NODE_ENV ? production : development)
 const unlinkAsync = promisify(fs.unlink)
