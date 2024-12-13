@@ -9,7 +9,7 @@ import Login from './pages/auth/Login';
 import ComingSoon from './pages/ComingSoon';
 import About from './pages/About';
 
-axios.defaults.baseURL = "http://127.0.0.1:5000/api/";
+axios.defaults.baseURL = "https://recipes-wzua.onrender.com/api/";
 
 function App() {
   return (
