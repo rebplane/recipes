@@ -15,7 +15,7 @@ const BASE_URL = "/uploads/"
 const app = express();
 
 app.use(express.json());
-app.use('frontend/public/uploads', express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
 app.use(express.static(__dirname));
 app.use(cookieParser());
 

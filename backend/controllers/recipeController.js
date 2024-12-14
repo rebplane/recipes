@@ -8,11 +8,10 @@ const { model } = require('mongoose');
 // const development = 'http://localhost:5000/'
 // const BASE_URL = (process.env.NODE_ENV ? production : development)
 
-const production = "/opt/render/project/src/frontend/public/uploads/"
-const  development = 'http://localhost:5000/'
-const file_length = (process.env.NODE_ENV ? production.length : development.length)
+const production = "/opt/render/project/src/uploads/"
+const file_length = production.length
 
-const BASE_URL = "/uploads/"
+const BASE_URL = "https://recipes-wzua.onrender.com/uploads/"
 
 const unlinkAsync = promisify(fs.unlink)
 
