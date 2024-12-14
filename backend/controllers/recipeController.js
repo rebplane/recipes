@@ -8,7 +8,7 @@ const { model } = require('mongoose');
 // const development = 'http://localhost:5000/'
 // const BASE_URL = (process.env.NODE_ENV ? production : development)
 
-const production = "/opt/render/project/src/uploads/"
+const production = "/opt/render/project/src/backend/uploads/"
 const file_length = production.length
 
 const BASE_URL = "https://recipes-wzua.onrender.com/uploads/"
