@@ -14,7 +14,7 @@ const unlinkAsync = promisify(fs.unlink)
 
 // Provides the static URL to the frontend in order to display the static images
 function setRecipeImgs(recipe) {
-    recipe.img = BASE_URL + recipe.img.slice(24);
+    recipe.img = BASE_URL + recipe.img.slice(24).replace("/", "");
 
     for (i=0; i<recipe.steps.length; i++) {
         if (recipe.steps[i].img) {
@@ -143,6 +143,8 @@ const postRecipe = asyncHandler(async(req, res) => {
     recipe.title = recipe.title.toLowerCase();
 
     var img_found = false
+
+    console.log("Saved image file to " + req.files[0].path);
 
     // Process the images
     for (i=0; i < req.files.length; i++) {
