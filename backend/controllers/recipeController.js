@@ -231,7 +231,7 @@ const editRecipe = asyncHandler(async(req, res) => { // TODO, also delete old im
             if (image.fieldname === 'img') {
                 recipe.img = req.files[i].path;
                 console.log(recipe.img);
-                unlinkAsync(oldRecipe);
+                unlinkAsync(oldRecipe.img);
             } else {
                 index = Number(req.files[i].fieldname.charAt(6));
                 
