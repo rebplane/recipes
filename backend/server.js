@@ -10,10 +10,12 @@ const authRoutes = require('./routes/authRoutes');
 
 const port = process.env.PORT  || 5000
 
+const BASE_URL = "/uploads/"
+
 const app = express();
 
 app.use(express.json());
-app.use('/uploads', express.static('uploads'));
+app.use('frontend/public/uploads', express.static('uploads'));
 app.use(express.static(__dirname));
 app.use(cookieParser());
 
