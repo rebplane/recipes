@@ -11,7 +11,7 @@ const { model } = require('mongoose');
 const production = "/opt/render/project/src/uploads/"
 const file_length = production.length
 
-const BASE_URL = "https://recipes-wzua.onrender.com/uploads/"
+const BASE_URL = "https://recipes-wzua.onrender.com/"
 
 const unlinkAsync = promisify(fs.unlink)
 
