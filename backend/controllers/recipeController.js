@@ -18,7 +18,7 @@ function setRecipeImgs(recipe) {
 
     for (i=0; i<recipe.steps.length; i++) {
         if (recipe.steps[i].img) {
-            recipe.steps[i].img = BASE_URL + recipe.steps[i].img.slice(24);
+            recipe.steps[i].img = BASE_URL + recipe.steps[i].img.slice(24).replace("/", "");
         }
     }
     // console.log(recipe);
