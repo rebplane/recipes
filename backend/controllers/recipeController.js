@@ -8,17 +8,21 @@ const { model } = require('mongoose');
 // const development = 'http://localhost:5000/'
 // const BASE_URL = (process.env.NODE_ENV ? production : development)
 
+const production = "/opt/render/project/src/frontend/public/uploads/"
+const  development = 'http://localhost:5000/'
+const file_length = (process.env.NODE_ENV ? production.length : development.length)
+
 const BASE_URL = "/uploads/"
 
 const unlinkAsync = promisify(fs.unlink)
 
 // Provides the static URL to the frontend in order to display the static images
 function setRecipeImgs(recipe) {
-    recipe.img = BASE_URL + recipe.img.slice(24).replace("/", "");
+    recipe.img = BASE_URL + recipe.img.slice(file_length);
 
     for (i=0; i<recipe.steps.length; i++) {
         if (recipe.steps[i].img) {
-            recipe.steps[i].img = BASE_URL + recipe.steps[i].img.slice(24).replace("/", "");
+            recipe.steps[i].img = BASE_URL + recipe.steps[i].img.slice(file_length);
         }
     }
     // console.log(recipe);
