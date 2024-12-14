@@ -25,7 +25,9 @@ app.use(cors(corsOptions));
 
 connectDB();
 
-app.use(express.static('uploads'));
+console.log(__dirname + '/uploads')
+
+app.use('/uploads/', express.static(__dirname + '/uploads'));
 
 
 // API routers, located in /routes folder
