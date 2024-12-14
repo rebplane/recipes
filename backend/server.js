@@ -15,7 +15,7 @@ const BASE_URL = "/uploads/"
 const app = express();
 
 app.use(express.json());
-app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use(express.static('uploads'));
 app.use(cookieParser());
 
 var whitelist = ['http://localhost:3000', 'https://www.rebbychayrecipes.com', 'http://www.rebbychayrecipes.com', 'https://recipes-frontend-ykxm.onrender.com', 'http://recipes-frontend-ykxm.onrender.com']
