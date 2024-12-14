@@ -11,12 +11,12 @@ import About from './pages/About';
 
 
 
-const production = "https://recipes-wzua.onrender.com/api/";
-const development = "http://localhost:5000/api/";
-const BASE_URL = (process.env.NODE_ENV ? production : development)
+// const production = "https://recipes-wzua.onrender.com/api/";
+// const development = "http://localhost:5000/api/";
+// const BASE_URL = (process.env.NODE_ENV ? production : development)
 
-axios.defaults.baseURL = BASE_URL;
-// axios.defaults.baseURL = "https://recipes-wzua.onrender.com/api/";
+// axios.defaults.baseURL = BASE_URL;
+axios.defaults.baseURL = "https://recipes-wzua.onrender.com/api/";
 // axios.defaults.baseURL = "http://localhost:5000/api/"
 
 function App() {
