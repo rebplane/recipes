@@ -24,57 +24,61 @@ function RecipePage() {
             <div class="flex justify-center">
                 <div class="flex-col mt-5 max-w-screen-xl space-y-5 ml-5 mr-5 md:ml-0 md:mr-0">
 
-                        <h1 class="font-bold text-2xl">{recipe.title}</h1>
+                        <h1 class="font-bold text-5xl">{recipe.title}</h1>
 
-                        <p class="text-md">
+                        <p class="text-md text-xl">
                         {recipe.short_desc}
                         </p>
 
-                        <div class="grid grid-cols-2 gap-5">
+                        <div class="md:grid md:grid-cols-2 gap-5">
                             <img class="col-span-1" src={recipe.img} alt="Burger"/>
 
-                            <div class="flex">
-                                <div class="max-w-xl border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 w-fit">
+                            <div class="flex md:mt-0 mt-5">
+                                <div class="max-w-xl border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 w-full">
                                     <div class="px-6 py-4">
-                                        <p class="text-base">
+                                        <div class="md:grid md:grid-cols-2">
+                                        <p class="text-base text-xl">
                                         <b>Prep Time: </b> {recipe.prep_time} mins
                                         </p>
-                                    </div>
-
-                                    <div class="px-6 py-4">
-                                        <p class="text-base">
+                                        <p class="text-base text-xl">
                                         <b>Cooking Time: </b> {recipe.cook_time} mins
                                         </p>
+                                        </div>
                                     </div>
 
                                     <div class="px-6 py-4">
-                                        <p class="text-base">
+                                        <p class="text-base text-xl">
                                         <b>Total Time: </b> {recipe.prep_time + recipe.cook_time} mins
                                         </p>
                                     </div>
 
-                                    <div class="px-6 pt-4 pb-2 flex-col space-y-3">
+                                    <hr class="border-0 border-t-2 border-solid border-indigo-900 mx-5"></hr>
+
+                                    <div class="px-6 pt-4 pb-2 grid grid-cols-3 space-y-3">
+                                        <p class="font-bold text-xl">Tags:</p>
+                                        <p></p>
+                                        <p></p>
                                         {
-                                            recipe.tags.map(tag => <p><span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{String(tag).charAt(0).toUpperCase() + String(tag.slice(1))}</span></p>)
+                                            recipe.tags.map(tag => <p><span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 text-xl mr-2 mb-2">{String(tag).charAt(0).toUpperCase() + String(tag.slice(1))}</span></p>)
                                         }
                                     </div>
                                 </div>
                             </div>
 
-                            <p class="text-md w-fit col-span-2">
+                            <p class="text-md w-fit col-span-2 text-xl md:my-0 my-5">
                             {recipe.more_info}
                             </p>
 
                         <div class="max-w-md border-0 bg-indigo-50 col-span-2 border-0 border-t-4 border-solid border-indigo-900">
 
                             <div class="px-3 py-4 col-span-1 space-y-3">
-                                <div class="font-bold text-xl mb-2">Ingredients</div>
+                                <div class="font-bold text-2xl mb-2">Ingredients</div>
                                     <div class="flex flex-col space-y-3">
                                         {
                                             recipe.ingredients.map(i =>
                                                 <div class="flex items-center">
                                                     <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 rounded focus:ring-blue-500 focus:ring-"/>
-                                                    <label for="link-checkbox" class="ms-2 text-sm font-medium">{i.amt} {i.ing}</label>
+                                                    <label for="link-checkbox" class="ms-2 text-sm font-medium text-xl">{i.amt} {i.ing}</label>
                                                 </div>
                                             )
                                         }
@@ -82,10 +86,10 @@ function RecipePage() {
                                 </div>
                             </div>
 
-                            <h1 class="font-bold text-2xl">Instructions</h1>
+                            <h1 class="font-bold text-2xl md:mt-0 mt-5">Instructions</h1>
                             
                             {recipe.steps.map((element, index) =>(
-                                <p class="text-md w-fit col-span-2">
+                                <p class="text-md w-fit col-span-2 text-xl md:mt-0 mt-5">
                                 <b>{index + 1}) </b> {element.step} 
                                 {
                                     element.img ?

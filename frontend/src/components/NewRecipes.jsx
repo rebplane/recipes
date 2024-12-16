@@ -11,15 +11,15 @@ function NewRecipes() {
     }, [])
 
     return (
-        <div flex>
+        <div class="h-fit">
             <div class="flex justify-center mt-5">
                 <div class="max-w-screen-xl w-screen relative flex items-center mt-20">
-                    <div class="mr-5 flex-grow border-t border-8 border-indigo-950"></div> <h1 class="font-bold text-2xl font-poppins">NEWEST RECIPES</h1> <div class="ml-5 flex-grow border-t border-8 border-indigo-950"></div>
+                    <div class="mx-5 flex-grow border-t border-8 border-indigo-950"></div> <h1 class="font-bold text-2xl font-poppins">NEWEST RECIPES</h1> <div class="mx-5 flex-grow border-t border-8 border-indigo-950"></div>
                 </div>
             </div>
         
             <div class="flex justify-center">
-                <div class="w-screen grid grid-cols-5 max-w-screen-xl justify-self-center mt-5 gap-x-3">
+                <div class="w-screen md:grid md:grid-cols-5 max-w-screen-xl justify-self-center mt-5 gap-x-3">
                 <div class="col-span-2 grid-rows-2">
 
                     <figure class="relative w-fit transition-all duration-300 cursor-pointer filter h-50 row-span-1 mb-3 gap-x-3">
@@ -42,7 +42,7 @@ function NewRecipes() {
                     
                 </div>
 
-                <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-3">
+                <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-3 max-md:hidden">
                     <a href={"recipe/"+ recipes[2].title}>
                         <img class="h-full w-full" name={recipes[2].title} src={recipes[2].img} alt={recipes[2].title}/>
                     </a>

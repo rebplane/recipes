@@ -12,11 +12,18 @@ function Featured() {
     }, [])
 
     return (
-        <div class="mt-20">
-            <div class="flex flex-row justify-center">
-                <div class="max-w-screen-xl bg-indigo-950 ">
-                    <div class="flex md:flex-row text-center items-center w-screen max-w-full">
-                        <img class="h-96 w-1/2" src={recipe.img} alt=""/>
+        <div class="mt-10 flex justify-center">
+            
+            <div class="w-fit">
+
+            <div class="max-w-screen-xl w-screen relative flex items-center my-10">
+                    <div class="mx-5 flex-grow border-t border-8 border-indigo-950"></div> <h1 class="font-bold text-2xl font-poppins">FEATURED</h1> <div class="mx-5 flex-grow border-t border-8 border-indigo-950"></div>
+                </div>
+                
+                <div class="max-w-screen-xl bg-indigo-950 md:py-0 py-10">
+                    
+                    <div class="md:flex md:flex-row text-center items-center w-screen max-w-full">
+                        <img class="max-md:hidden h-96 w-1/2" src={recipe.img} alt=""/>
                         
                         <div class="w-full p-5">
 
