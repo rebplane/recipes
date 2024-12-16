@@ -24,7 +24,7 @@ function NewRecipes() {
 
                     <figure class="relative w-fit transition-all duration-300 cursor-pointer filter h-50 row-span-1 mb-3 gap-x-3">
                     <a href={"recipe/"+ recipes[0].title}>
-                        <img class="h-96 w-fit object-fill" name={recipes[0].title} src={recipes[0].img} alt={recipes[0].title}/>
+                        <img class="w-fit object-fill" name={recipes[0].title} src={recipes[0].img} alt={recipes[0].title}/>
                     </a>
                     <figcaption class="absolute px-4 text-lg text-black bottom-5 bg-white">
                         <p class="font-bold text-md">{recipes[0].title}</p>
@@ -33,7 +33,7 @@ function NewRecipes() {
 
                     <figure class="relative w-full transition-all duration-300 cursor-pointer filter h-50 row-span-1">
                         <a href={"recipe/"+ recipes[1].title}>
-                            <img class="h-96 w-fit object-fill" name={recipes[1].title} src={recipes[1].img} alt={recipes[1].title}/>
+                            <img class="w-fit object-fill" name={recipes[1].title} src={recipes[1].img} alt={recipes[1].title}/>
                         </a>
                         <figcaption class="absolute px-4 text-lg text-black bottom-5 bg-white text-center">
                             <p class="font-bold text-md">{recipes[1].title}</p>
