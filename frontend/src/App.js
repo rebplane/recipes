@@ -11,8 +11,8 @@ import About from './pages/About';
 import SignUp from './pages/auth/SignUp';
 
 
-// axios.defaults.baseURL = "https://recipes-wzua.onrender.com/api/";
-axios.defaults.baseURL = "http://localhost:5000/api/"
+axios.defaults.baseURL = "https://recipes-wzua.onrender.com/api/";
+// axios.defaults.baseURL = "http://localhost:5000/api/"
 
 function App() {
   return (
