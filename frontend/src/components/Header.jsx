@@ -1,8 +1,22 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import '../index.css'
+import { userCheck } from '../api/auth';
 
 function Header() {
+
+    const [user, setUser] = useState("");
+
+    useEffect(() => {
+        const verifyCookie = async() => {
+            let userData = userCheck(setUser);
+            return userData;
+        };
+        verifyCookie();
+    }, []);
+
+
     return (
+        
         <div class="border-0 border-b-4 border-solid border-indigo-900 sticky top-0 z-50">
             <nav class="bg-white sticky">
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -10,6 +24,11 @@ function Header() {
                     <img src="/images/rebbychay.png" class="h-9" alt="RebbyChayLogo" />
                 </a>
                 <div class="flex md:order-2">
+                    {user !== "" ?
+                        <a href="/" class="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700 font-poppins">{user.user}</a>
+                        :  <a href="/login" class="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700 font-poppins">LOGIN</a>
+                    }
+                    
                     {/* TODO: Search feature */}
                     {/* <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" class="md:hidden text-gray-500 text-gray-400 hover:bg-gray-100 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">

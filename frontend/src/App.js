@@ -8,10 +8,11 @@ import axios from 'axios';
 import Login from './pages/auth/Login';
 import ComingSoon from './pages/ComingSoon';
 import About from './pages/About';
+import SignUp from './pages/auth/SignUp';
 
 
-axios.defaults.baseURL = "https://recipes-wzua.onrender.com/api/";
-// axios.defaults.baseURL = "http://localhost:5000/api/"
+// axios.defaults.baseURL = "https://recipes-wzua.onrender.com/api/";
+axios.defaults.baseURL = "http://localhost:5000/api/"
 
 function App() {
   return (
@@ -26,7 +27,9 @@ function App() {
         <Route path='/favorites' element={<ComingSoon/>}></Route>
         <Route path='/about' element={<About/>}></Route>
 
-        <Route path='/admin/login' element={<Login/>}></Route>
+        <Route path='/signup' element={<SignUp/>}></Route>
+
+        <Route path='/login' element={<Login/>}></Route>
 
         <Route path='/admin/create' element={<CreateRecipe/>}></Route>
         <Route path='/admin/edit/:title' element={<CreateRecipe/>}></Route>

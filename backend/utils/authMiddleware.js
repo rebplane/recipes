@@ -28,3 +28,27 @@ module.exports.userVerification = (req, res) => {
     }
   })
 }
+
+module.exports.verifyAdmin = (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(403).json( {status: false });
+  }
+
+  jwt.verify(token, process.env.TOKEN_KEY, async(err, data) => {
+    if (err) {
+      return res.status(403).json({ status: false })
+    }
+    else {
+      const user = await User.findById(data.id);
+      if (user.role === "admin") {
+        return res.status(200).json({ status: true, user: user.username })
+      }
+      else {
+        return res.status(403).json({ status:false })
+      }
+    }
+  })
+
+}
