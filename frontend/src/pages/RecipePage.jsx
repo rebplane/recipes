@@ -21,20 +21,22 @@ function RecipePage() {
         <div>
             <Header/>
 
-            <div class="flex justify-center">
-                <div class="flex-col mt-5 max-w-screen-xl space-y-5 ml-5 mr-5 md:ml-0 md:mr-0">
+            <div class="flex justify-center ">
+                <div class="flex justify-left flex-col mt-5 max-w-screen-xl space-y-5 ml-5 mr-5 md:ml-0 md:mr-0">
+                    <div class="md:w-3/4">
 
-                        <h1 class="font-bold text-5xl">{recipe.title}</h1>
+                        <h1 class="font-bold text-5xl mb-10">{recipe.title}</h1>
 
-                        <p class="text-md text-xl">
+                        <p class="text-md text-xl mb-10">
                         {recipe.short_desc}
                         </p>
 
-                        <div class="md:grid md:grid-cols-2 gap-5">
-                            <img class="col-span-1" src={recipe.img} alt="Burger"/>
-
-                            <div class="flex md:mt-0 mt-5">
-                                <div class="max-w-xl border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 w-full">
+                        <div class="gap-y-5">
+                            <div class="">
+                            <img class="w-3/4 mb-5" src={recipe.img} alt={recipe.title}/>
+                
+                            <div class="flex md:mt-0">
+                                <div class="w-3/4 border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 w-full mb-10">
                                     <div class="px-6 py-4">
                                         <div class="md:grid md:grid-cols-2">
                                         <p class="text-base text-xl">
@@ -64,15 +66,16 @@ function RecipePage() {
                                     </div>
                                 </div>
                             </div>
+                            </div>
 
-                            <p class="text-md w-fit col-span-2 text-xl md:my-0 my-5">
+                            <p class="text-md w-fit col-span-2 text-xl md:my-0 my-5 whitespace-break-spaces">
                             {recipe.more_info}
                             </p>
 
-                        <div class="max-w-md border-0 bg-indigo-50 col-span-2 border-0 border-t-4 border-solid border-indigo-900">
+                        <div class="max-w-md border-0 bg-indigo-50 col-span-2 border-0 border-t-4 border-solid border-indigo-900 my-10">
 
                             <div class="px-3 py-4 col-span-1 space-y-3">
-                                <div class="font-bold text-2xl mb-2">Ingredients</div>
+                                <div class="font-bold text-3xl mb-2 font-poppins">Ingredients</div>
                                     <div class="flex flex-col space-y-3">
                                         {
                                             recipe.ingredients.map(i =>
@@ -86,10 +89,10 @@ function RecipePage() {
                                 </div>
                             </div>
 
-                            <h1 class="font-bold text-2xl md:mt-0 mt-5">Instructions</h1>
+                            <h1 class="font-bold text-3xl md:mt-0 mt-5 mb-5 font-poppins">Instructions</h1>
                             
                             {recipe.steps.map((element, index) =>(
-                                <p class="text-md w-fit col-span-2 text-xl md:mt-0 mt-5">
+                                <p class="text-md w-fit col-span-2 text-xl md:mt-0 my-5">
                                 <b>{index + 1}) </b> {element.step} 
                                 {
                                     element.img ?
@@ -99,13 +102,13 @@ function RecipePage() {
                                     
                                 </p>
 
-                                // TODO: Get instruction image
+                            
                             ))}
 
 
                         </div>
                         
-
+                        </div>
                 </div>
             </div>
 

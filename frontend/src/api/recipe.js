@@ -35,6 +35,7 @@ export function getRecipe(setRecipe, recipe_title) {
     axios.get(`recipes/${recipe_title}`)
     .then((res) => {
         res.data.title = capitalizeWords(res.data.title)
+        console.log(res.data)
         setRecipe(res.data);
     })
     .catch(error => console.error(`Error: ${error}`))
