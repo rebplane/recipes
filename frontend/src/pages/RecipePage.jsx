@@ -18,14 +18,14 @@ function RecipePage() {
 
     useEffect(() => {
         getRecipe(setRecipe, recipe_title)
-    }, [])
+    }, [recipe_title])
 
     return (
         <div>
             <Header/>
 
-            <div class="flex justify-center ">
-                <div class="flex justify-left flex-col mt-5 max-w-screen-xl space-y-5 ml-5 mr-5 md:ml-0 md:mr-0">
+            <div class="flex justify-center">
+                <div class="flex md:justify-left flex-col mt-5 md:max-w-screen-xl max-w-md space-y-5 ml-5 mr-5 md:ml-0 md:mr-0">
                     <div class="md:w-3/4">
 
                         <h1 class="font-bold text-5xl mb-10">{recipe.title}</h1>
