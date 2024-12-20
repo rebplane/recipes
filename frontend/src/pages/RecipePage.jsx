@@ -11,6 +11,7 @@ import RecipeDisplay from '../components/ReviewDisplay';
 import RecipeComment from '../components/ReviewComment';
 import { getReviewData } from '../api/review';
 import StarDisplay from '../components/stars/StarDisplay';
+import { userCheck } from '../api/auth';
 
 function RecipePage() {
 
@@ -19,9 +20,18 @@ function RecipePage() {
     let [recipe, setRecipe] = useState({tags: [], ingredients: [], steps: []})
     let [reviewData, setReviewData] = useState({rating_avg: 0, num_reviews: 0, num_comments: 0})
 
+    const [user, setUser] = useState("");
+
     useEffect(() => {
         getRecipe(setRecipe, recipe_title);
         getReviewData(setReviewData, recipe_title);
+
+        const verifyCookie = async() => {
+            let userData = userCheck(setUser);
+            return userData;
+        };
+        verifyCookie();
+
     }, [recipe_title])
 
     return (
@@ -127,7 +137,11 @@ function RecipePage() {
                             
                             <hr class="my-20"></hr>
 
+                            {user !== "" ?
                             <RecipeForm/>
+                            :
+                            <p class="text-xl">Want to leave a review? <a href="/signup" class="text-blue-600 hover:underline">Create an account</a> or <a href="/login" class="text-blue-600 hover:underline">login</a>.</p>
+                            }
                         
                             <RecipeComment/>
 
