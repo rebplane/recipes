@@ -1,14 +1,17 @@
 import axios from 'axios';
 
 
-export function login(user) {
+export function login(user, setError) {
     axios.post("auth/login/", user, {withCredentials: true} )
     .then((res) => {
         if (res.status == 200) {
             window.location = "/";
         }
     })
-    .catch(error => console.error(`Error: ${error}`))
+    .catch(error => {
+        console.error(`Error: ${error}`);
+        setError(true);
+    })
 }
 
 // Verify if user has admin access
@@ -29,14 +32,17 @@ export function userVerify(setUser) {
     })
 }
 
-export function signup(user) {
+export function signup(user, setError) {
     axios.post("auth/signup/", user, {withCredentials: true})
     .then((res) => {
         if (res.status == 201) {
             window.location = "/"
         }
     })
-    .catch(error => console.error(`Error: ${error}`))
+    .catch(error => {
+        console.error(`Error: ${error}`);
+        setError(true);
+    })
 }
 
 
@@ -46,7 +52,6 @@ export function userCheck(setUser) {
     .then((res) => {
         if (res.data.status === true) {
             setUser(res.data);
-            console.log(res.data);
         } 
         return res.data;
     })
