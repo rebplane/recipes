@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const recipeRoutes = require('./routes/recipeRoutes');
 const tagRoutes = require('./routes/tagRoutes');
 const authRoutes = require('./routes/authRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const port = process.env.PORT  || 5000
 
@@ -26,8 +27,6 @@ app.use(cors(corsOptions));
 
 connectDB();
 
-console.log(__dirname + '/uploads')
-
 app.use('/uploads/', express.static(__dirname + '/uploads'));
 
 
@@ -35,5 +34,6 @@ app.use('/uploads/', express.static(__dirname + '/uploads'));
 app.use('/api/recipes', recipeRoutes);
 app.use('/api/tags', tagRoutes);
 app.use('/api/auth/', authRoutes);
+app.use('/api/reviews/', reviewRoutes);
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

@@ -9,9 +9,6 @@ const signup = asyncHandler(async(req, res, next) => {
         console.log(req.body)
         const { email, password, username } = req.body;
 
-        console.log("test")
-        console.log(req.body)
-
         // Check if user already exists
         let checkUser = await User.findOne({ email });
         if (checkUser) {
