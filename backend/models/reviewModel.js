@@ -9,17 +9,12 @@ const reviewSchema = new mongoose.Schema({
         type: String
     },
     user: {
-        type: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        }],
+        type: String,
         required: true,
     },
     recipe: {
-        type: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Recipe'
-        }]
+        type: String,
+        required: true,
     }
 
 

@@ -146,13 +146,12 @@ function RecipePage() {
                                 </div>
                             </div>
                             
-                            <RecipeDisplay/>
+                            {/* <RecipeDisplay/> */}
                             
-                            <hr class="my-20"></hr>
+                            {/* <hr class="my-20"></hr> */}
 
                             <RecipeForm/>
                         
-                            <RecipeComment/>
                             <RecipeComment/>
 
 

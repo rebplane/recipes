@@ -1,8 +1,17 @@
 import React, {useState, useEffect} from 'react';
+import { getReviewData } from '../api/review';
+import { useParams } from "react-router-dom";
 import '../index.css'
 
 function RecipeDisplay() {
 
+    let [reviewData, setReviewData] = useState([]);
+
+    const recipe_title = useParams().title
+
+    useEffect(() => {
+        getReviewData(setReviewData, recipe_title);
+    }, [])
 
     return (
 
