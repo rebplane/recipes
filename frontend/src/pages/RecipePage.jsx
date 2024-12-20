@@ -49,7 +49,7 @@ function RecipePage() {
                             <p class="text-black text-lg ml-5 mb-1 font-poppins"> <b> {reviewData.rating_avg} </b> <b class="text-gray-500">({reviewData.num_reviews} REVIEWS) </b> | <b>{reviewData.num_comments} COMMENTS </b> </p>
                         </div>
                         
-                        <p class="text-md text-xl mb-10">
+                        <p class="text-md text-xl my-10">
                         {recipe.short_desc}
                         </p>
 
