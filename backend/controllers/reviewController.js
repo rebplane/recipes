@@ -55,11 +55,13 @@ const postReview = asyncHandler(async(req, res) => {
 
 })
 
+
+// @desc Gets review with title <:title>
+// @route GET /api/reviews/{title}
+// @access Public
 const getReviewsByTitle = asyncHandler(async(req, res) => {
-    console.log("got here")
     try {
         var recipe = await Recipe.findOne({ title: req.params.title.toLowerCase()}); // Get the recipe corresponding to the title
-        console.log(recipe)
         var reviews = await Review.find({ recipe: recipe._id});  // Get all reviews corresponding to the recipe's ID
 
         // Set the usernames in each reviews
@@ -78,9 +80,49 @@ const getReviewsByTitle = asyncHandler(async(req, res) => {
 })
 
 
+// @desc Gets review data with title <:title> - the number of reviews, average rating, and number of comments
+// @route GET /api/reviews/{title}
+// @access Public
+const getReviewData = asyncHandler(async(req, res) => {
+    let review_data = {}
+    try {
+        var recipe = await Recipe.findOne({ title: req.params.title.toLowerCase()}); // Get the recipe corresponding to the title
+
+        let num_reviews = await Review.countDocuments({recipe: String(recipe._id)});
+        review_data.num_reviews = num_reviews;
+
+        if (num_reviews === 0) {
+            review_data.rating_avg = 0;
+            review_data.num_comments = 0;
+        }
+
+        else {
+            // Calculate the average of the ratings for this recipe
+            var rating_avg = await Review.aggregate([
+                { $match: {recipe: String(recipe._id)}},
+                { $group: {_id: null, rating: {$avg: '$rating'}} }
+            ])
+    
+            review_data.rating_avg = rating_avg[0].rating;
+
+            // Get the number of comments for this recipe (number of reviews without an empty comment)
+            let num_comments = await Review.countDocuments({recipe: String(recipe._id), comment: {$ne: ""}});
+            review_data.num_comments = num_comments
+
+        }
+
+        res.status(200).json({data: review_data})
+
+    } catch(error) {
+        console.log("Error in fetching recipe: ", error.message);
+        res.status(500).json({ success: false, message: "Server Error"});
+    }
+})
+
 
 
 module.exports = {
     postReview,
-    getReviewsByTitle
+    getReviewsByTitle,
+    getReviewData
 }

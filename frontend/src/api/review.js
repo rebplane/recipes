@@ -20,12 +20,16 @@ export function postReview(setSuccess, setError, review, title) {
 export function getReviews(setReviews, recipe_title) {
     axios.get(`reviews/${recipe_title}`)
     .then((res) => {
-        console.log(res.data)
         setReviews(res.data);
     })
     .catch(error => console.error(`Error: ${error}`))
 }
 
 export function getReviewData(setReviewData, recipe_title) {
-    
+    axios.get(`reviews/data/${recipe_title}`)
+    .then((res) => {
+        console.log(res.data.data);
+        setReviewData(res.data.data);
+    })
+    .catch(error => console.error(`Error: ${error}`))
 }

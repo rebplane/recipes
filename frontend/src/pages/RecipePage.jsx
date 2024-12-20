@@ -9,15 +9,19 @@ import { getRecipe } from '../api/recipe'
 import RecipeForm from '../components/ReviewForm';
 import RecipeDisplay from '../components/ReviewDisplay';
 import RecipeComment from '../components/ReviewComment';
+import { getReviewData } from '../api/review';
+import StarDisplay from '../components/stars/StarDisplay';
 
 function RecipePage() {
 
     const recipe_title = useParams().title
 
     let [recipe, setRecipe] = useState({tags: [], ingredients: [], steps: []})
+    let [reviewData, setReviewData] = useState({rating_avg: 0, num_reviews: 0, num_comments: 0})
 
     useEffect(() => {
-        getRecipe(setRecipe, recipe_title)
+        getRecipe(setRecipe, recipe_title);
+        getReviewData(setReviewData, recipe_title);
     }, [recipe_title])
 
     return (
@@ -30,38 +34,11 @@ function RecipePage() {
 
                         <h1 class="font-bold text-5xl mb-10">{recipe.title}</h1>
 
-                        <div class="flex text-orange-700 my-5">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="orange" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                    </svg>
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="orange" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                    </svg>
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="orange" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                    </svg>
-                                
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="orange" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                    </svg>
-                                
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
-                                    <defs>
-                                        <linearGradient id="grad">
-                                            <stop offset="50%" stop-color="orange"/>
-                                            <stop offset="50%" stop-color="white"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path fill="url(#grad)" stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                    </svg>
-
-                                    <p class="text-black text-lg ml-5 mb-1 font-poppins"> <b> 4.5 </b> <b class="text-gray-500">(500 REVIEWS) </b> | <b>300 COMMENTS </b> </p>
-
+                        <div class="flex">
+                            <StarDisplay avg={reviewData.rating_avg}/>
+                            <p class="text-black text-lg ml-5 mb-1 font-poppins"> <b> {reviewData.rating_avg} </b> <b class="text-gray-500">({reviewData.num_reviews} REVIEWS) </b> | <b>{reviewData.num_comments} COMMENTS </b> </p>
                         </div>
-
+                        
                         <p class="text-md text-xl mb-10">
                         {recipe.short_desc}
                         </p>
@@ -146,9 +123,9 @@ function RecipePage() {
                                 </div>
                             </div>
                             
-                            {/* <RecipeDisplay/> */}
+                            <RecipeDisplay reviewData={reviewData}/>
                             
-                            {/* <hr class="my-20"></hr> */}
+                            <hr class="my-20"></hr>
 
                             <RecipeForm/>
                         

@@ -11,7 +11,6 @@ function capitalizeWords(str) {
 
 // Sends a POST request to create a new recipe in the database
 export function postRecipe(newRecipe, setError) {
-    console.log(newRecipe)
     axios.post("recipes/", newRecipe, {
         headers: {
             'Content-Type': 'multipart/form-data',
@@ -19,7 +18,6 @@ export function postRecipe(newRecipe, setError) {
     })
     .then((res) => {
         if (res.status == 201) {
-            console.log("got here")
             window.location = `/recipe/${newRecipe.title}`
         }
     })
@@ -35,7 +33,6 @@ export function getRecipe(setRecipe, recipe_title) {
     axios.get(`recipes/${recipe_title}`)
     .then((res) => {
         res.data.title = capitalizeWords(res.data.title)
-        console.log(res.data)
         setRecipe(res.data);
     })
     .catch(error => console.error(`Error: ${error}`))
@@ -48,7 +45,6 @@ export function getLatestThreeRecipes(setRecipe) {
         for (var i=0; i < 3; i++) {
             res.data[i].title = capitalizeWords(res.data[i].title)
         }
-        console.log(res.data)
         setRecipe(res.data);
     })
     .catch(error => console.error(`Error: ${error}`))
@@ -102,7 +98,6 @@ export function getEditRecipe(setRecipe, setIngredientValues, setStepValues, set
 
 // Edits the recipe with the new data info
 export function editRecipe(newRecipe, setError, recipe_title) {
-    console.log(newRecipe)
     axios.put(`recipes/${recipe_title}`, newRecipe, {
         headers: {
             'Content-Type': 'multipart/form-data',
@@ -110,7 +105,6 @@ export function editRecipe(newRecipe, setError, recipe_title) {
     })
     .then((res) => {
         if (res.status == 201) {
-            console.log("got here")
             window.location = `/recipe/${newRecipe.title}`
         }
     })
