@@ -19,21 +19,21 @@ function NewRecipes() {
             </div>
         
             <div class="flex justify-center">
-                <div class="w-screen md:grid md:grid-cols-4 max-w-screen-xl justify-self-center mt-5 gap-x-3">
-                <div class="col-span-1 grid-rows-2">
+                <div class="w-screen md:grid md:grid-cols-7 max-w-screen-xl justify-self-center mt-5 gap-x-3">
+                <div class="col-span-2 h-full grid grid-rows-2 gap-y-3">
 
-                    <figure class="relative w-fit transition-all duration-300 cursor-pointer filter row-span-1 mb-3 gap-x-3">
-                    <a href={"recipe/"+ recipes[0].title}>
-                        <img class="w-fit object-fill md:h-96" name={recipes[0].title} src={recipes[0].img} alt={recipes[0].title}/>
-                    </a>
-                        <figcaption class="absolute px-4 text-lg text-black bottom-5 bg-white ml-3">
-                            <p class="font-bold text-md">{recipes[0].title}</p>
-                        </figcaption>
+                    <figure class="relative w-fit transition-all duration-300 cursor-pointer filter h-full">
+                        <a href={"recipe/"+ recipes[0].title}>
+                            <img class="h-full" name={recipes[0].title} src={recipes[0].img} alt={recipes[0].title}/>
+                        </a>
+                            <figcaption class="absolute px-4 text-lg text-black bottom-5 bg-white ml-3">
+                                <p class="font-bold text-md">{recipes[0].title}</p>
+                            </figcaption>
                     </figure>
 
-                    <figure class="relative w-full transition-all duration-300 cursor-pointer filter row-span-1">
+                    <figure class="relative w-full transition-all duration-300 cursor-pointer filter h-full">
                         <a href={"recipe/"+ recipes[1].title}>
-                            <img class="w-fit object-fill" name={recipes[1].title} src={recipes[1].img} alt={recipes[1].title}/>
+                            <img class="h-full" name={recipes[1].title} src={recipes[1].img} alt={recipes[1].title}/>
                         </a>
                         <figcaption class="absolute px-4 text-lg text-black bottom-5 bg-white ml-3">
                             <p class="font-bold text-md">{recipes[1].title}</p>
@@ -42,9 +42,9 @@ function NewRecipes() {
                     
                 </div>
 
-                <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-3 max-md:hidden">
+                <figure class="relative transition-all duration-300 cursor-pointer filter h-full w-full col-span-5 max-md:hidden h-full">
                     <a href={"recipe/"+ recipes[2].title}>
-                        <img class="h-full w-full h-96" name={recipes[2].title} src={recipes[2].img} alt={recipes[2].title}/>
+                        <img class="h-full" name={recipes[2].title} src={recipes[2].img} alt={recipes[2].title}/>
                     </a>
                     <figcaption class="absolute px-4 text-lg text-black bottom-5 bg-white ml-3">
                         <p class="font-bold text-md">{recipes[2].title}</p>
