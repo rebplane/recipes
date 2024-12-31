@@ -45,8 +45,8 @@ function RecipePage() {
                         <h1 class="font-bold text-5xl mb-10">{recipe.title}</h1>
 
                         <div class="flex">
-                            <StarDisplay avg={reviewData.rating_avg.toFixed(2)}/>
-                            <p class="text-black text-lg ml-5 mb-1 font-poppins"> <b> {reviewData.rating_avg} </b> <b class="text-gray-500">({reviewData.num_reviews} REVIEWS) </b> | <b>{reviewData.num_comments} COMMENTS </b> </p>
+                            <StarDisplay avg={reviewData.rating_avg}/>
+                            <p class="text-black text-lg ml-5 mb-1 font-poppins"> <b> {reviewData.rating_avg.toFixed(2)} </b> <b class="text-gray-500">({reviewData.num_reviews} REVIEWS) </b> | <b>{reviewData.num_comments} COMMENTS </b> </p>
                         </div>
                         
                         <p class="text-md text-xl my-10">
