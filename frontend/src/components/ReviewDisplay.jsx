@@ -32,7 +32,7 @@ function RecipeDisplay({ reviewData }) {
             <StarDisplay avg={reviewData.rating_avg}/>
 
 
-            <h2 class="text-xl mt-5 text-black">{reviewData.rating_avg} out of 5 stars</h2>
+            <h2 class="text-xl mt-5 text-black">{reviewData.rating_avg.toFixed(2)} out of 5 stars</h2>
         
     </div>
 )};

@@ -13,7 +13,7 @@ function RecipeComment() {
 
     useEffect(() => {
         getReviews(setReviews, recipe_title);
-    }, [])
+    }, [reviews])
 
 
     return (
