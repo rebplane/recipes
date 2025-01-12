@@ -25,7 +25,7 @@ function Header() {
                 </a>
                 <div class="flex md:order-2">
                     {user !== "" ?
-                        <a href="/" class="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700 font-poppins">{user.user}</a>
+                        <a href="/user" class="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700 font-poppins">{user.user}</a>
                         :  <a href="/login" class="block py-2 px-3 text-gray-900 font-bold rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700 font-poppins">LOGIN</a>
                     }
                     
@@ -66,10 +66,7 @@ function Header() {
                         <a href="/recipes" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700 font-poppins">RECIPES</a>
                         </li>
                         <li>
-                        <a href="/blog" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700 font-poppins">BLOG</a>
-                        </li>
-                        <li>
-                        <a href="/favorites" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700 font-poppins">FAVORITES</a>
+                        <a href="/search" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700 font-poppins">SEARCH</a>
                         </li>
                         <li>
                         <a href="/about" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent text-zinc-700 md:hover:text-blue-700 md:p-0 text-black md:hover:text-blue-500 hover:bg-gray-700 over:text-white md:hover:bg-transparent border-gray-700 font-poppins">ABOUT</a>

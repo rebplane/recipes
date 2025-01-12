@@ -23,13 +23,13 @@ function App() {
         <Route path='/recipes' element={<RecipeList/>}></Route>
         <Route path='/recipe/:title' element={<RecipePage/>}></Route>
 
-        <Route path='/blog' element={<ComingSoon/>}></Route>
-        <Route path='/favorites' element={<ComingSoon/>}></Route>
+        <Route path='/search' element={<ComingSoon/>}></Route>
         <Route path='/about' element={<About/>}></Route>
 
         <Route path='/signup' element={<SignUp/>}></Route>
 
         <Route path='/login' element={<Login/>}></Route>
+        <Route path='/user' element={<Login/>}></Route>
 
         <Route path='/admin/create' element={<CreateRecipe/>}></Route>
         <Route path='/admin/edit/:title' element={<CreateRecipe/>}></Route>

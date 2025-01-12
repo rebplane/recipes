@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 var corsOptions = {
-  origin: ['http://localhost:3000', 'https://www.rebbychayrecipes.com', 'http://www.rebbychayrecipes.com', 'https://recipes-frontend-ykxm.onrender.com', 'http://recipes-frontend-ykxm.onrender.com'],
+  origin: ['https://www.rebbychayrecipes.com', 'http://www.rebbychayrecipes.com', 'https://recipes-frontend-ykxm.onrender.com', 'http://recipes-frontend-ykxm.onrender.com'],
   credentials: true,
 }
 
