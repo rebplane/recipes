@@ -54,11 +54,11 @@ function RecipePage() {
                         </p>
 
                         <div class="gap-y-5">
-                            <div class="w-3/4">
-                            <img class="mb-5" src={recipe.img} alt={recipe.title}/>
+                            <div class="">
+                            <img class="mb-5 w-full" src={recipe.img} alt={recipe.title}/>
                 
                             <div class="flex md:mt-0">
-                                <div class="border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 w-full mb-10">
+                                <div class="border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 mb-10 w-full">
                                     <div class="px-6 py-4">
                                         <div class="md:grid md:grid-cols-2">
                                         <p class="text-base text-xl">
