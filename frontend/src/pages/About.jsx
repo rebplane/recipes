@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 
 function About() {
   return (
-    <div>
+    <div class="dark:text-white dark:bg-gray-950">
         <Header/>
             <div className="h-screen flex flex-col mt-20 ml-20 md:mb-0 mb-96 max-md:mx-5 ">
                 <div className="md:flex">

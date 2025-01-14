@@ -34,7 +34,7 @@ const SignUp = () => {
 
 
   return (
-    <div>
+    <div class="dark:text-white dark:bg-gray-950 h-screen">
         <Header/>
 
         <div class="mt-10 flex justify-center">
@@ -53,15 +53,15 @@ const SignUp = () => {
               }
 
             <div className="relative z-0 w-full mb-5 group mt-5">
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email address</label>
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
                 <input type="email" name="email" value={user.email} onChange={handleOnChange} id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="john.doe@company.com" required />
             </div> 
             <div className="relative z-0 w-full mb-5 group">
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                 <input type="text" name="username" value={user.username} onChange={handleOnChange} id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="e.g. coolchef123" required />
             </div> 
             <div class="relative z-0 w-full mb-5 group">
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                 <input type="password" name="password" value={user.password} onChange={handleOnChange} id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required />
             </div> 
            
