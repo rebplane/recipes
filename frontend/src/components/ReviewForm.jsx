@@ -19,7 +19,7 @@ function RecipeForm() {
 
     return (
 
-    <div>
+    <div class="dark:text-white">
         <h1 class="font-bold text-3xl md:mt-0 font-poppins">Leave a Review</h1>
         {error ?
                     <div class="max-w-2xl bg-red-300 flex p-3 rounded-md mt-5">

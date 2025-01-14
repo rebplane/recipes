@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 
 function Home() {
   return (
-    <div>
+    <div class="dark:bg-gray-950">
         <Header/>
         <Featured/>
         <NewRecipes/>

@@ -38,7 +38,7 @@ function RecipePage() {
         <div>
             <Header/>
 
-            <div class="flex justify-center">
+            <div class="flex justify-center dark:bg-gray-950 dark:text-white">
                 <div class="flex md:justify-left flex-col mt-5 md:max-w-screen-xl max-w-md space-y-5 ml-5 mr-5 md:ml-0 md:mr-0">
                     <div class="md:w-3/4">
 
@@ -46,19 +46,15 @@ function RecipePage() {
 
                         <div class="flex">
                             <StarDisplay avg={reviewData.rating_avg}/>
-                            <p class="text-black text-lg ml-5 mb-1 font-poppins"> <b> {reviewData.rating_avg.toFixed(2)} </b> <b class="text-gray-500">({reviewData.num_reviews} REVIEWS) </b> | <b>{reviewData.num_comments} COMMENTS </b> </p>
+                            <p class="text-black text-lg ml-5 mb-1 font-poppins dark:text-gray-300"> <b> {reviewData.rating_avg.toFixed(2)} </b> <b class="text-gray-500">({reviewData.num_reviews} REVIEWS) </b> | <b>{reviewData.num_comments} COMMENTS </b> </p>
                         </div>
-                        
-                        <p class="text-md text-xl my-10">
-                        {recipe.short_desc}
-                        </p>
 
-                        <div class="gap-y-5">
+                        <div class="gap-y-5 mt-10">
                             <div class="">
                             <img class="mb-5 w-full" src={recipe.img} alt={recipe.title}/>
                 
                             <div class="flex md:mt-0">
-                                <div class="border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 mb-10 w-full">
+                                <div class="border-0 bg-indigo-50 col-span-1 border-0 border-t-4 border-solid border-indigo-900 mb-10 w-full dark:bg-indigo-950">
                                     <div class="px-6 py-4">
                                         <div class="md:grid md:grid-cols-2">
                                         <p class="text-base text-xl">
@@ -89,12 +85,16 @@ function RecipePage() {
                                 </div>
                             </div>
                             </div>
+                            
+                            <p class="text-md text-xl my-10">
+                            {recipe.short_desc}
+                            </p>
 
                             <p class="text-md w-fit col-span-2 text-xl md:my-0 my-5 whitespace-break-spaces">
                             {recipe.more_info}
                             </p>
 
-                        <div class="max-w-md border-0 bg-indigo-50 col-span-2 border-0 border-t-4 border-solid border-indigo-900 my-10">
+                        <div class="max-w-md border-0 bg-indigo-50 col-span-2 border-0 border-t-4 border-solid border-indigo-900 my-10 dark:bg-indigo-950">
 
                             <div class="px-3 py-4 col-span-1 space-y-3">
                                 <div class="font-bold text-3xl mb-2 font-poppins">Ingredients</div>

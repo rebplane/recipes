@@ -25,14 +25,14 @@ function RecipeDisplay({ reviewData }) {
 
     return (
 
-        <div class>
+        <div class="dark:text-white">
     
         <h1 class="font-bold text-3xl md:mt-0 font-poppins mb-7">Reviews ({reviewData.num_reviews})</h1>
 
             <StarDisplay avg={reviewData.rating_avg}/>
 
 
-            <h2 class="text-xl mt-5 text-black">{reviewData.rating_avg.toFixed(2)} out of 5 stars</h2>
+            <h2 class="text-xl mt-5 text-black dark:text-gray-300">{reviewData.rating_avg.toFixed(2)} out of 5 stars</h2>
         
     </div>
 )};

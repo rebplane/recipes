@@ -14,7 +14,7 @@ function NewRecipes() {
         <div class="h-fit max-md:mx-3">
             <div class="flex justify-center">
                 <div class="max-w-screen-xl w-screen relative flex items-center mt-20">
-                    <h1 class="font-bold text-2xl font-lexend">NEWEST RECIPES</h1> <div class="ml-5 flex-grow border-t border-4 border-indigo-950"></div>
+                    <h1 class="font-bold text-2xl font-lexend dark:text-white">NEWEST RECIPES</h1> <div class="ml-5 flex-grow border-t border-4 border-indigo-950 dark:border-indigo-600"></div>
                 </div>
             </div>
         
