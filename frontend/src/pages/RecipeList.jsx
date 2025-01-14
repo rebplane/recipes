@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 
 function RecipeList() {
   return (
-    <div>
+    <div class="dark:bg-gray-950">
         <Header/>
         <Collection/>
         <Footer/>
