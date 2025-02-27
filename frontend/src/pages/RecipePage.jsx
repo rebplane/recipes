@@ -12,6 +12,7 @@ import RecipeComment from '../components/ReviewComment';
 import { getReviewData } from '../api/review';
 import StarDisplay from '../components/stars/StarDisplay';
 import { userCheck } from '../api/auth';
+import Substitutes from '../components/Substitutes';
 
 function RecipePage() {
 
@@ -127,6 +128,8 @@ function RecipePage() {
                             
                             ))}
 
+                           <Substitutes/>
+                           
                             <div className="mt-10">
                                 <div class="max-w-screen-xl w-screen relative flex items-center my-20">
                                     <div class="mr-5 flex-grow border-t border-3 border-indigo-950"></div> <img src="/images/rebbychay.png" class="h-56" alt="RebbyChayLogo" /> <div class="ml-5 flex-grow border-t border-3 border-indigo-950"></div>
