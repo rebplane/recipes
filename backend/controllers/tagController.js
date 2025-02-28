@@ -15,6 +15,19 @@ const getTags = asyncHandler(async(req, res) => {
     
 });
 
+// @desc Get all tags with category {cat}
+// @route GET /api/tags/{cat}
+// @access Public
+const getTagsByCategory = asyncHandler(async(req, res) => {
+    try {
+        const tags = await Tag.find({category: req.params.cat.toLowerCase()}).sort({title: 1}); // Sorts alphabetically by title
+        res.status(200).json(tags); 
+    } catch(error) {
+        console.log("Error in fetching tags: ", error.message);
+        res.status(500).json({ success: false, message: "Server Error"});
+    }
+})
+
 // @desc Create a tag
 // @route POST /api/tags
 const createTag = asyncHandler(async(req, res) => {
@@ -40,5 +53,6 @@ const createTag = asyncHandler(async(req, res) => {
 
 module.exports = {
     getTags,
+    getTagsByCategory,
     createTag
 }
