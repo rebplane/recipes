@@ -26,7 +26,7 @@ function SearchPage() {
     return (
         <div class="dark:bg-gray-950 dark:text-white">
             <Header/>
-            <div class="flex justify-center h-screen">
+            <div class="flex justify-center md:h-screen">
                 <div class="dark:bg-gray-950 dark:text-white md:w-3/4">
 
                     <div class="mt-20 flex justify-center text-center">
@@ -54,7 +54,7 @@ function SearchPage() {
                         <h1 class="font-bold text-2xl w-1/2 font-lexend dark:text-white">FILTERS</h1> 
                     </div>
                     
-                    <div class="grid grid-cols-3">
+                    <div class="md:grid md:grid-cols-3 mt-5">
                         <div>
                             <div class="flex justify-center mt-5">
                                 <h1 class="text-xl w-1/2 font-lexend dark:text-white">Cuisine</h1> 
